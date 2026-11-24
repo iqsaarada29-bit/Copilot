@@ -1,0 +1,3287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#0F1115" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Trakindo EM" />
+  <meta name="description" content="Trakindo EM Co-Pilot — Akademi APLTCL071, Referensi Trakindo & LinkedIn, Kamus Istilah Wajib Tahu, dan Alat Kerja Lapangan Site Satui untuk Iqsa Arada Wd." />
+  <title>Trakindo EM Co-Pilot — Akademi APLTCL071 &amp; Field Assistant</title>
+  <link id="pwa-manifest" rel="manifest" href="manifest.webmanifest" />
+  <link id="pwa-apple-icon" rel="apple-touch-icon" href="icon-512.png" />
+  <link id="pwa-favicon" rel="icon" type="image/png" href="icon-192.png" />
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM: TRAKINDO EQUIPMENT MANAGEMENT (LIGHT INDUSTRIAL PALETTE)
+       - Crisp White:      #FFFFFF
+       - Technical Gray:   #F6F7F9
+       - Charcoal Black:   #0F1115
+       - CAT Gold:         #F5C200
+       - Subtle Border:    #E2E6EC
+       ========================================================================== */
+    :root {
+      --bg-page: #F6F7F9;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #EEF1F5;
+      --ink-main: #0F1115;
+      --ink-sub: #374151;
+      --ink-muted: #6B7280;
+      --gold: #F5C200;
+      --gold-hover: #E0B000;
+      --gold-soft: #FEF9E6;
+      --gold-line: #F4D567;
+      --line: #E2E6EC;
+      --line-strong: #CBD5E1;
+      --ok-bg: #ECFDF5;
+      --ok-ink: #065F46;
+      --ok-line: #A7F3D0;
+      --warn-bg: #FFFBEB;
+      --warn-ink: #92400E;
+      --warn-line: #FDE68A;
+      --err-bg: #FEF2F2;
+      --err-ink: #991B1B;
+      --err-line: #FECACA;
+      --info-bg: #EFF6FF;
+      --info-ink: #1E40AF;
+      --info-line: #BFDBFE;
+      --shadow-xs: 0 1px 4px rgba(15, 17, 21, 0.04);
+      --shadow-sm: 0 4px 14px rgba(15, 17, 21, 0.06);
+      --shadow-md: 0 12px 30px rgba(15, 17, 21, 0.14);
+      --r-sm: 10px;
+      --r-md: 14px;
+      --r-lg: 18px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background-color: var(--bg-page);
+      color: var(--ink-main);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-page);
+      color: var(--ink-main);
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-weight: 700;
+      color: var(--ink-main);
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+    }
+
+    p { margin: 0; }
+    .mono { font-family: var(--font-mono); }
+
+    /* ==========================================================================
+       HEADER BAR
+       ========================================================================== */
+    .hdr {
+      background: var(--ink-main);
+      color: #FFFFFF;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 2px 10px rgba(15, 17, 21, 0.16);
+    }
+
+    .hdr-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      background: var(--ink-main);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 7px;
+      overflow: hidden;
+      height: 36px;
+      flex-shrink: 0;
+    }
+
+    .brand-t {
+      background: var(--gold);
+      color: var(--ink-main);
+      font-weight: 900;
+      font-size: 0.98rem;
+      padding: 0 11px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-c {
+      background: var(--ink-main);
+      padding: 0 8px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-role {
+      font-size: 0.74rem;
+      color: var(--gold);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hdr-install-btn {
+      background: var(--gold);
+      color: var(--ink-main);
+      border: none;
+      border-radius: 999px;
+      padding: 8px 15px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 38px;
+      flex-shrink: 0;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .hdr-install-btn:hover { background: var(--gold-hover); }
+    .hdr-install-btn:active { transform: scale(0.98); }
+
+    .hdr-gold-rule {
+      height: 3px;
+      background: var(--gold);
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       NAVIGATION (DESKTOP TOP BAR + MOBILE BOTTOM BAR WITH SAFE PADDING)
+       ========================================================================== */
+    .top-nav {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 63px;
+      z-index: 35;
+    }
+
+    .top-nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .nav-btn {
+      background: transparent;
+      color: var(--ink-sub);
+      border: 1px solid transparent;
+      border-radius: var(--r-sm);
+      padding: 10px 12px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--bg-subtle);
+      color: var(--ink-main);
+    }
+
+    .nav-btn.active {
+      background: var(--ink-main);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .nav-btn.active svg { color: var(--gold); }
+
+    .bot-nav { display: none; }
+
+    @media (max-width: 740px) {
+      .top-nav { display: none; }
+      .bot-nav {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        border-top: 1px solid var(--line);
+        padding: 6px 6px calc(8px + env(safe-area-inset-bottom));
+        z-index: 45;
+        box-shadow: 0 -4px 16px rgba(15, 17, 21, 0.08);
+      }
+      .bot-btn {
+        background: transparent;
+        border: none;
+        border-radius: 10px;
+        padding: 6px 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--ink-sub);
+        cursor: pointer;
+        min-height: 50px;
+      }
+      .bot-btn.active {
+        background: var(--gold-soft);
+        color: var(--ink-main);
+        font-weight: 700;
+      }
+      .bot-btn.active .bot-ico {
+        background: var(--ink-main);
+        color: var(--gold);
+      }
+      .bot-ico {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    /* ==========================================================================
+       MAIN CONTAINER & SURFACES
+       ========================================================================== */
+    .main-area {
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px 104px 20px;
+      flex: 1;
+    }
+
+    @media (max-width: 640px) {
+      .main-area { padding: 16px 14px calc(108px + env(safe-area-inset-bottom)) 14px; }
+    }
+
+    .page-view {
+      display: none;
+      animation: softFade 0.18s ease-out;
+    }
+
+    .page-view.active { display: block; }
+
+    @keyframes softFade {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 18px; border-radius: var(--r-md); }
+    }
+
+    .card-dark {
+      background: var(--ink-main);
+      color: #FFFFFF;
+      border-radius: var(--r-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-dark h1, .card-dark h2, .card-dark h3 { color: #FFFFFF; }
+
+    .card-gold {
+      background: var(--gold-soft);
+      border: 1.5px solid var(--gold-line);
+      border-radius: var(--r-lg);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+
+    .panel {
+      background: var(--bg-page);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 18px;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 5px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 11px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      border-radius: 999px;
+      line-height: 1.3;
+    }
+
+    .pill-gold { background: var(--gold); color: var(--ink-main); }
+    .pill-dark { background: var(--ink-main); color: #FFFFFF; }
+    .pill-gray { background: var(--bg-subtle); color: var(--ink-sub); }
+    .pill-ok { background: var(--ok-bg); color: var(--ok-ink); border: 1px solid var(--ok-line); }
+    .pill-warn { background: var(--warn-bg); color: var(--warn-ink); border: 1px solid var(--warn-line); }
+    .pill-err { background: var(--err-bg); color: var(--err-ink); border: 1px solid var(--err-line); }
+    .pill-info { background: var(--info-bg); color: var(--info-ink); border: 1px solid var(--info-line); }
+
+    /* Grids */
+    .g-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .g-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .g-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+
+    @media (max-width: 880px) {
+      .g-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .g-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      .g-2, .g-3, .g-4 { grid-template-columns: 1fr; }
+    }
+
+    /* Segmented Sub-Navigation */
+    .sub-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      background: var(--bg-subtle);
+      padding: 6px;
+      border-radius: var(--r-md);
+      margin-bottom: 20px;
+    }
+
+    .sub-tab {
+      flex: 1 1 auto;
+      background: transparent;
+      border: none;
+      border-radius: var(--r-sm);
+      padding: 10px 13px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink-sub);
+      cursor: pointer;
+      min-height: 42px;
+      transition: all 0.14s ease;
+    }
+
+    .sub-tab:hover { color: var(--ink-main); }
+
+    .sub-tab.active {
+      background: var(--bg-card);
+      color: var(--ink-main);
+      font-weight: 700;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .sub-view { display: none; }
+    .sub-view.active { display: block; }
+
+    /* Buttons & Inputs */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 17px;
+      font-size: 0.87rem;
+      font-weight: 700;
+      border-radius: var(--r-sm);
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      min-height: 44px;
+      text-decoration: none;
+      transition: all 0.14s ease;
+    }
+
+    .btn:active { transform: scale(0.98); }
+    .btn-gold { background: var(--gold); color: var(--ink-main); }
+    .btn-gold:hover { background: var(--gold-hover); }
+    .btn-dark { background: var(--ink-main); color: #FFFFFF; }
+    .btn-dark:hover { background: #1F242D; }
+    .btn-outline { background: var(--bg-card); color: var(--ink-main); border-color: var(--line-strong); }
+    .btn-outline:hover { background: var(--bg-subtle); }
+    .btn-sm { padding: 7px 12px; font-size: 0.79rem; min-height: 36px; }
+
+    .inp-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .inp-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink-main);
+    }
+
+    .inp, .sel, .txt {
+      width: 100%;
+      padding: 10px 13px;
+      font-size: 0.94rem;
+      font-family: inherit;
+      color: var(--ink-main);
+      background: var(--bg-card);
+      border: 1.5px solid var(--line-strong);
+      border-radius: var(--r-sm);
+      min-height: 44px;
+      transition: border-color 0.14s ease, box-shadow 0.14s ease;
+    }
+
+    .inp:focus, .sel:focus, .txt:focus {
+      outline: none;
+      border-color: var(--ink-main);
+      box-shadow: 0 0 0 3px rgba(245, 194, 0, 0.35);
+    }
+
+    /* Progress Bar */
+    .meter {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-subtle);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0 6px 0;
+    }
+
+    .meter-bar {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    /* Accordion */
+    .acc-item {
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      background: var(--bg-card);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .acc-item.open {
+      border-color: var(--ink-main);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .acc-trigger {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 15px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      cursor: pointer;
+      min-height: 56px;
+    }
+
+    .acc-trigger:hover { background: var(--bg-page); }
+
+    .acc-content {
+      display: none;
+      padding: 16px 18px 20px 18px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-sub);
+      font-size: 0.91rem;
+    }
+
+    .acc-item.open .acc-content { display: block; }
+
+    /* Tables */
+    .tbl-box {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      background: var(--bg-card);
+    }
+
+    th {
+      background: var(--bg-subtle);
+      color: var(--ink-main);
+      font-weight: 700;
+      text-align: left;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-sub);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* Checklist Row */
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--r-sm);
+      background: var(--bg-card);
+      margin-bottom: 9px;
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+
+    .check-row:hover { background: var(--bg-page); }
+
+    .check-row input[type="checkbox"], .check-row input[type="radio"] {
+      width: 19px;
+      height: 19px;
+      margin-top: 2px;
+      accent-color: var(--ink-main);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .check-row.done {
+      background: var(--ok-bg);
+      border-color: var(--ok-line);
+    }
+
+    .check-row.done .check-label {
+      text-decoration: line-through;
+      color: var(--ink-muted);
+    }
+
+    /* Simple Tool Result Box */
+    .result-box {
+      background: var(--bg-page);
+      border: 1.5px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 18px;
+      margin-top: 12px;
+    }
+
+    .big-num {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--ink-main);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .action-guide {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: var(--gold-soft);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      font-size: 0.87rem;
+      color: var(--ink-main);
+    }
+
+    /* Schedule Row */
+    .time-row {
+      display: flex;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      background: var(--bg-card);
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+
+    .time-row.free-row {
+      background: var(--gold-soft);
+      border-color: var(--gold-line);
+    }
+
+    .time-badge {
+      min-width: 128px;
+      font-family: var(--font-mono);
+      font-size: 0.79rem;
+      font-weight: 700;
+      color: var(--ink-main);
+      background: var(--bg-subtle);
+      padding: 5px 9px;
+      border-radius: 8px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .time-row.free-row .time-badge { background: var(--gold); }
+
+    @media (max-width: 540px) {
+      .time-row { flex-direction: column; gap: 8px; }
+      .time-badge { min-width: 0; width: fit-content; }
+    }
+
+    /* AI Chat */
+    .chat-box {
+      background: var(--bg-page);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      height: 420px;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg-bubble {
+      max-width: 88%;
+      padding: 13px 16px;
+      border-radius: 15px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .msg-bubble.user {
+      align-self: flex-end;
+      background: var(--ink-main);
+      color: #FFFFFF;
+      border-bottom-right-radius: 4px;
+    }
+
+    .msg-bubble.ai {
+      align-self: flex-start;
+      background: var(--bg-card);
+      color: var(--ink-main);
+      border: 1px solid var(--line);
+      border-bottom-left-radius: 4px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .msg-bubble.ai strong {
+      background: var(--gold-soft);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .preset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .chip-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      padding: 7px 13px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink-main);
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+
+    .chip-btn:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold);
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 17, 21, 0.65);
+      backdrop-filter: blur(2px);
+      z-index: 60;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal-card {
+      background: var(--bg-card);
+      border-radius: var(--r-lg);
+      max-width: 560px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--line);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    /* Toast */
+    .toast-msg {
+      position: fixed;
+      bottom: 86px;
+      left: 50%;
+      transform: translateX(-50%) translateY(24px);
+      opacity: 0;
+      pointer-events: none;
+      background: var(--ink-main);
+      color: #FFFFFF;
+      border-left: 4px solid var(--gold);
+      padding: 12px 18px;
+      border-radius: var(--r-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+      z-index: 80;
+      transition: all 0.22s ease;
+      max-width: 92vw;
+    }
+
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Footer */
+    .ftr {
+      background: var(--bg-card);
+      border-top: 1px solid var(--line);
+      padding: 18px 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+
+    @media (max-width: 740px) {
+      .ftr { padding-bottom: 92px; }
+    }
+
+    .diagram-box {
+      background: var(--bg-page);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 12px;
+      margin-top: 12px;
+      overflow-x: auto;
+    }
+
+    .diagram-box svg {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+  .field{padding:9px 10px;border:1px solid var(--line-strong);border-radius:10px;font-size:.9rem;min-height:40px;width:100%;background:#fff}#unit-list table{width:100%;border-collapse:collapse;font-size:.85rem}#unit-list td,#unit-list th{padding:6px;border-bottom:1px solid var(--line);text-align:left}html.dark{--bg-page:#0F1115;--bg-card:#1A1D23;--bg-subtle:#232730;--ink-main:#F3F4F6;--ink-sub:#D1D5DB;--ink-muted:#9CA3AF;--line:#2E3340;--line-strong:#454B5A}html.dark .field{background:#232730;color:#F3F4F6}html.dark .top-nav{background:#1A1D23}#pin-lock{position:fixed;inset:0;background:#0F1115;color:#fff;z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px}#pin-lock input{padding:12px;font-size:1.4rem;text-align:center;width:180px;border-radius:12px;border:0}</style>
+</head>
+<body>
+<div id="pin-lock"><h2 style="color:#F5C200">Trakindo EM</h2><input id="pin-try" type="password" inputmode="numeric" maxlength="6" placeholder="PIN"><button class="hdr-install-btn" onclick="tryPin()">Buka</button><div id="pin-err" style="color:#FCA5A5"></div></div>
+
+  <!-- ========================================================================
+       HEADER
+       ======================================================================== -->
+  <header class="hdr">
+    <div class="hdr-inner">
+      <div class="brand-wrap">
+        <div class="brand-lockup" aria-label="Logo Trakindo CAT">
+          <span class="brand-t">Trakindo</span>
+          <span class="brand-c">
+            <svg width="36" height="20" viewBox="0 0 64 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="3" y="25" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-weight="900" font-size="22" letter-spacing="-1">CAT</text>
+              <polygon points="32,21 21,33 43,33" fill="#F5C200"/>
+            </svg>
+          </span>
+        </div>
+        <div class="brand-meta">
+          <span class="brand-name">Trakindo EM Co-Pilot • Site Satui</span>
+          <span class="brand-role">Iqsa Arada Wd • Maintenance Coordination Analyst</span>
+        </div>
+      </div>
+
+      <button type="button" class="hdr-install-btn" onclick="openInstallModal()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+          <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+        </svg>
+        <span>Pasang ke HP</span>
+      </button>
+    </div>
+    <div class="hdr-gold-rule" aria-hidden="true"></div>
+  </header>
+
+  <!-- ========================================================================
+       DESKTOP NAVIGATION (4 MAIN TABS)
+       ======================================================================== -->
+  <nav class="top-nav" aria-label="Navigasi Utama">
+    <div class="top-nav-inner">
+      <button type="button" class="nav-btn active" data-sec="sec-beranda" onclick="switchMainSec('sec-beranda')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>1. Beranda &amp; Jadwal</span>
+      </button>
+
+      <button type="button" class="nav-btn" data-sec="sec-materi" onclick="switchMainSec('sec-materi')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1">
+          <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+        </svg>
+        <span>2. Materi &amp; Kamus</span>
+      </button>
+
+      <button type="button" class="nav-btn" data-sec="sec-alat" onclick="switchMainSec('sec-alat')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1">
+          <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/>
+        </svg>
+        <span>3. Alat Kerja Simpel</span>
+      </button>
+
+      <button type="button" class="nav-btn" data-sec="sec-ai" onclick="switchMainSec('sec-ai')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+        <span>4. AI Mentor &amp; Catatan</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       MOBILE BOTTOM NAVIGATION (4 MAIN TABS)
+       ======================================================================== -->
+  <nav class="bot-nav" aria-label="Navigasi Bawah HP">
+    <button type="button" class="bot-btn active" data-sec="sec-beranda" onclick="switchMainSec('sec-beranda')">
+      <span class="bot-ico">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        </svg>
+      </span>
+      <span>Beranda</span>
+    </button>
+
+    <button type="button" class="bot-btn" data-sec="sec-materi" onclick="switchMainSec('sec-materi')">
+      <span class="bot-ico">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+        </svg>
+      </span>
+      <span>Materi</span>
+    </button>
+
+    <button type="button" class="bot-btn" data-sec="sec-alat" onclick="switchMainSec('sec-alat')">
+      <span class="bot-ico">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="12" x2="16" y2="12"/>
+        </svg>
+      </span>
+      <span>Alat Site</span>
+    </button>
+
+    <button type="button" class="bot-btn" data-sec="sec-ai" onclick="switchMainSec('sec-ai')">
+      <span class="bot-ico">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      </span>
+      <span>AI Mentor</span>
+    </button>
+  </nav>
+
+  <!-- ========================================================================
+       MAIN CONTENT
+       ======================================================================== -->
+  <main class="main-area">
+
+    <!-- ======================================================================
+         TAB 1: BERANDA & PERENCANAAN JADWAL HARIAN
+         ====================================================================== -->
+    <section id="sec-beranda" class="page-view active">
+      <div class="card-dark">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:16px;">
+          <div>
+            <span class="pill pill-gold" style="margin-bottom:10px;">PT TRAKINDO UTAMA • EQUIPMENT MANAGEMENT</span>
+            <h1 style="font-size: 1.5rem; margin-bottom: 6px;">Selamat Bertugas, Iqsa Arada Wd</h1>
+            <p style="color: #D1D5DB; font-size: 0.92rem; max-width: 640px;">
+              Staff <strong>Maintenance Coordination Analyst</strong> — <strong>Site Satui</strong> (Roster <strong>5 Hari Kerja, 2 Hari Libur</strong>). Panduan belajar mandiri <strong>APLTCL071</strong>, referensi <strong>trakindo.co.id &amp; LinkedIn</strong>, kamus istilah wajib tahu, dan alat bantu lapangan siap pakai.
+            </p>
+          </div>
+          <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 14px; padding: 14px 18px; min-width: 185px;">
+            <div style="font-size: 0.72rem; color: var(--gold); font-weight: 700; letter-spacing: 0.05em;">ONBOARDING SITE SATUI</div>
+            <div style="font-size: 1.25rem; font-weight: 800; margin-top: 2px;" id="onboarding-counter">Mulai 1 Des 2026</div>
+            <div style="font-size: 0.76rem; color: #9CA3AF; margin-top: 2px;">Advancing You Forward</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Home Screen Install Banner -->
+      <div class="card-gold">
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px;">
+          <div style="flex: 1 1 300px;">
+            <span class="kicker" style="color: var(--ink-main);">APLIKASI MANDIRI OFFLINE (PWA)</span>
+            <h2 style="font-size: 1.15rem; margin-bottom: 4px;">Pasang Trakindo EM Co-Pilot ke Layar Utama HP</h2>
+            <p style="font-size: 0.88rem; color: var(--ink-sub);">
+              Simpan ikon aplikasi di layar utama HP Anda agar tetap bisa dibuka cepat di area workshop atau pit Site Satui tanpa bergantung sinyal.
+            </p>
+          </div>
+          <button type="button" class="btn btn-dark" onclick="openInstallModal()">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+              <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+            </svg>
+            <span>Pasang ke Layar Utama</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Readiness Meters -->
+      <div class="g-4" style="margin-bottom: 20px;">
+        <div class="card" style="margin-bottom:0; padding:18px;">
+          <span class="kicker">MATERI APLTCL071</span>
+          <div style="font-size: 1.55rem; font-weight: 800;" id="m-mod-pct">0%</div>
+          <div class="meter"><div class="meter-bar" id="m-mod-bar" style="width: 0%;"></div></div>
+          <div style="font-size: 0.78rem; color: var(--ink-muted);" id="m-mod-sub">0 dari 8 Elemen</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0; padding:18px;">
+          <span class="kicker">JADWAL HARIAN</span>
+          <div style="font-size: 1.55rem; font-weight: 800;" id="m-sched-pct">0%</div>
+          <div class="meter"><div class="meter-bar" id="m-sched-bar" style="width: 0%;"></div></div>
+          <div style="font-size: 0.78rem; color: var(--ink-muted);" id="m-sched-sub">0 Sesi Selesai</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0; padding:18px;">
+          <span class="kicker">KUIS EVALUASI</span>
+          <div style="font-size: 1.55rem; font-weight: 800;" id="m-quiz-val">Belum Tes</div>
+          <div style="font-size: 0.78rem; color: var(--ink-muted); margin-top: 12px;">Target lulus: &ge; 80% (12/15)</div>
+        </div>
+
+        <div class="card" style="margin-bottom:0; padding:18px;">
+          <span class="kicker">BUKU SAKU</span>
+          <div style="font-size: 1.55rem; font-weight: 800;" id="m-note-val">0 Catatan</div>
+          <div style="font-size: 0.78rem; color: var(--ink-muted); margin-top: 12px;">Istilah &amp; catatan tersimpan</div>
+        </div>
+      </div>
+
+      <!-- DAILY SCHEDULE PLANNER & CAREER ROADMAP -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="kicker">PERENCANAAN JADWAL HARIAN &amp; KARIR</span>
+            <h2 style="font-size: 1.25rem;">Jadwal Harian Persiapan, Site Satui &amp; Probation</h2>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline" onclick="resetScheduleChecks()">Reset Centang Jadwal</button>
+        </div>
+
+        <div class="sub-tabs">
+          <button type="button" class="sub-tab active" onclick="switchSubTab(this, 'view-sched-prep')">1. Persiapan (Mulai 09:00 WITA)</button>
+          <button type="button" class="sub-tab" onclick="switchSubTab(this, 'view-sched-site')">2. Kerja Site Satui (Roster 5-2)</button>
+          <button type="button" class="sub-tab" onclick="switchSubTab(this, 'view-probation')">3. Probation 6 Bln &amp; Karir 5 Thn</button>
+        </div>
+
+        <!-- Schedule 1: Pre-Onboarding Prep -->
+        <div id="view-sched-prep" class="sub-view active">
+          <div class="card-gold" style="padding:14px 18px; margin-bottom:16px;">
+            <strong style="font-size:0.9rem;">Aturan Jadwal Harian Pra-Onboarding:</strong>
+            <p style="font-size:0.84rem; color:var(--ink-sub); margin-top:3px;">
+              Dimulai jam <strong>09:00 WITA</strong>, menyertakan sesi khusus mencatat istilah teknis ke <strong>Buku Saku</strong>, dan <strong>mengosongkan waktu 16:00 – 17:30 WITA</strong> untuk kebutuhan pribadi Anda.
+            </p>
+          </div>
+          <div id="prep-schedule-list"></div>
+        </div>
+
+        <!-- Schedule 2: Site Satui 5-2 Routine -->
+        <div id="view-sched-site" class="sub-view">
+          <div class="panel" style="margin-bottom:16px;">
+            <strong style="font-size:0.9rem;">Rutinitas Harian Maintenance Coordination Analyst (Site Satui):</strong>
+            <p style="font-size:0.84rem; color:var(--ink-sub); margin-top:3px;">
+              Pola kerja rotasi <strong>5 Hari Kerja, 2 Hari Libur</strong> yang menghubungkan data VisionLink, jadwal PM &amp; backlog, suku cadang, workshop, dan tim operasi tambang.
+            </p>
+          </div>
+          <div id="site-schedule-list"></div>
+        </div>
+
+        <!-- Schedule 3: Probation & Career -->
+        <div id="view-probation" class="sub-view">
+          <h3 style="font-size: 1.05rem; margin-bottom: 12px;">Target Probation 6 Bulan (Des 2026 – Mei 2027)</h3>
+          <div class="g-3" style="margin-bottom: 20px;">
+            <div class="panel">
+              <span class="pill pill-gold" style="margin-bottom:8px;">Bulan 1–2 (Des – Jan)</span>
+              <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Safety K3, Populasi Unit &amp; SMU</h4>
+              <p style="font-size: 0.84rem; color: var(--ink-sub); margin-bottom: 10px;">
+                Lulus induksi K3 &amp; LOTO Satui, hafal unit kontrak, kuasai validasi SMU VisionLink dan interval PM 250/500/1000/2000 jam.
+              </p>
+              <input type="text" id="prob-1" class="inp" placeholder="Catatan progres Bulan 1–2..." onchange="saveProbNote('m1', this.value)" />
+            </div>
+
+            <div class="panel">
+              <span class="pill pill-gold" style="margin-bottom:8px;">Bulan 3–4 (Feb – Mar)</span>
+              <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Backlog, S.O.S &amp; Order Parts H-14</h4>
+              <p style="font-size: 0.84rem; color: var(--ink-sub); margin-bottom: 10px;">
+                Kelola backlog (&lt;30 hari), baca tren S.O.S (Fe, Cu, Si, Na) &amp; filter cutting, dan pastikan order parts PM masuk H-14.
+              </p>
+              <input type="text" id="prob-2" class="inp" placeholder="Catatan progres Bulan 3–4..." onchange="saveProbNote('m2', this.value)" />
+            </div>
+
+            <div class="panel">
+              <span class="pill pill-dark" style="margin-bottom:8px;">Bulan 5–6 (Apr – Mei)</span>
+              <h4 style="font-size: 0.95rem; margin-bottom: 6px;">KPI MARC, AMT/PCR &amp; Lulus Tetap</h4>
+              <p style="font-size: 0.84rem; color: var(--ink-sub); margin-bottom: 10px;">
+                Pisahkan downtime dealer vs customer dengan akurat, susun laporan PA/MA/UA/MTTR/MTBS, dan bantu proyeksi PCR.
+              </p>
+              <input type="text" id="prob-3" class="inp" placeholder="Catatan progres Bulan 5–6..." onchange="saveProbNote('m3', this.value)" />
+            </div>
+          </div>
+
+          <h3 style="font-size: 1.05rem; margin-bottom: 12px;">Arah Pengembangan Karir 5 Tahun di Trakindo</h3>
+          <div class="g-3">
+            <div class="panel">
+              <span class="pill pill-gold" style="margin-bottom:6px;">Tahun 1 (2026–2027)</span>
+              <h4 style="font-size: 0.94rem;">Maintenance Coordination Analyst</h4>
+              <p style="font-size: 0.83rem; color: var(--ink-sub); margin-top: 4px;">Menguasai koordinasi harian PM, Backlog, S.O.S, dan akurasi data armada Site Satui.</p>
+            </div>
+            <div class="panel">
+              <span class="pill pill-dark" style="margin-bottom:6px;">Tahun 2–3 (2028–2029)</span>
+              <h4 style="font-size: 0.94rem;">Senior Maintenance Planner / CM</h4>
+              <p style="font-size: 0.83rem; color: var(--ink-sub); margin-top: 4px;">Menyusun rencana PCR komponen utama, optimasi jadwal workshop, dan analisis keandalan.</p>
+            </div>
+            <div class="panel">
+              <span class="pill pill-dark" style="margin-bottom:6px;">Tahun 4–5 (2030–2031)</span>
+              <h4 style="font-size: 0.94rem;">Equipment Management Supervisor</h4>
+              <p style="font-size: 0.83rem; color: var(--ink-sub); margin-top: 4px;">Mengelola kinerja kontrak MARC/CVA, sinkronisasi KPI pelanggan, dan pembinaan tim site.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 2: MATERI LENGKAP (APLTCL071 + WEBSITE & LINKEDIN) + KAMUS ISTILAH
+         ====================================================================== -->
+    <section id="sec-materi" class="page-view">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="kicker">MATERI TEKNIS, REFERENSI RESMI &amp; KAMUS ISTILAH</span>
+            <h2 style="font-size: 1.3rem;">Panduan APLTCL071, Website &amp; LinkedIn Trakindo</h2>
+          </div>
+        </div>
+
+        <div class="sub-tabs">
+          <button type="button" class="sub-tab active" onclick="switchSubTab(this, 'view-mat-8el')">1. 8 Elemen &amp; Repair (APLTCL071)</button>
+          <button type="button" class="sub-tab" onclick="switchSubTab(this, 'view-mat-engine')">2. Engine, Oli &amp; S.O.S Detail</button>
+          <button type="button" class="sub-tab" onclick="switchSubTab(this, 'view-mat-trakindo')">3. Website &amp; LinkedIn Trakindo</button>
+          <button type="button" class="sub-tab" onclick="switchSubTab(this, 'view-mat-kamus')">4. Kamus Istilah &amp; Kuis</button>
+          <button type="button" class="sub-tab" onclick="switchSubTab(this, 'view-mat-baru')">5. Hidrolik, Undercarriage &amp; Planning</button>
+        </div>
+
+        <!-- SUB-TAB 2A: 8 ELEMEN APLTCL071 + REPAIR MANAGEMENT (LEVEL I/II/III, REMAN/PEX, FUEL/OLI) -->
+        <div id="view-mat-8el" class="sub-view active">
+          <div class="card-gold" style="padding: 18px 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+              <strong style="font-size: 0.96rem;">3 Sasaran Utama Manajemen Perawatan Alat Berat:</strong>
+              <button type="button" class="btn btn-sm btn-gold" onclick="markAllElementsDone()">Tandai Semua 8 Elemen Selesai</button>
+            </div>
+            <div class="g-3">
+              <div style="background:#FFFFFF; padding:12px 14px; border-radius:10px; border:1px solid var(--line);">
+                <strong style="font-size:0.87rem;">1. High Availability (MA/PA)</strong>
+                <p style="font-size:0.81rem; color:var(--ink-sub); margin-top:3px;">Memaksimalkan kesiapan unit untuk mendukung target produksi tambang.</p>
+              </div>
+              <div style="background:#FFFFFF; padding:12px 14px; border-radius:10px; border:1px solid var(--line);">
+                <strong style="font-size:0.87rem;">2. Lowest Cost per Hour</strong>
+                <p style="font-size:0.81rem; color:var(--ink-sub); margin-top:3px;">Menekan biaya per jam dengan <em>Repair Before Failure</em> (hemat 41%–58%).</p>
+              </div>
+              <div style="background:#FFFFFF; padding:12px 14px; border-radius:10px; border:1px solid var(--line);">
+                <strong style="font-size:0.87rem;">3. Zero Unscheduled Downtime</strong>
+                <p style="font-size:0.81rem; color:var(--ink-sub); margin-top:3px;">Menghindari kerusakan mendadak di lapangan yang merugikan operasi.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 Elements Accordion -->
+          <div id="elements-list"></div>
+
+          <!-- Repair Management Deep Dive: Level I/II/III, Before/After Failure, Reman vs PEX, Fuel Burn & Oil Top-Up -->
+          <div style="margin-top: 24px;">
+            <h3 style="font-size: 1.08rem; margin-bottom: 8px;">Klasifikasi Perbaikan Level I, II &amp; III (Engine &amp; Drive Train)</h3>
+            <p style="font-size: 0.85rem; color: var(--ink-sub); margin-bottom: 10px;">
+              Dari modul APLTCL071 (3 langkah Repair Management: <em>Repair Indicator &rarr; Diagnostic Inspection &rarr; Repair Option</em>):
+            </p>
+            <div class="tbl-box" style="margin-bottom: 18px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Level Perbaikan</th>
+                    <th>Komponen Engine CAT</th>
+                    <th>Komponen Drive Train</th>
+                    <th>Catatan Analis</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="pill pill-ok">Level I</span></td>
+                    <td>Piston ring, main &amp; connecting rod bearing, valve guide, seal/gasket luar</td>
+                    <td>Seal, bearing luar, adjustment, minor coupling/linkage</td>
+                    <td>Perbaikan ringan / reseal atau penggantian komponen aus berkala.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="pill pill-warn">Level II</span></td>
+                    <td>Piston, cylinder liner, intake &amp; exhaust valve, camshaft, oil pump</td>
+                    <td>Clutch disc/plate, planetary gear/bearing, pump/valve rebuild</td>
+                    <td>Perbaikan menengah / top-end atau sub-assembly terencana.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="pill pill-err">Level III</span></td>
+                    <td>Cylinder block, cylinder head, crankshaft, connecting rod</td>
+                    <td>Transmission housing, main axle/differential housing, final drive case</td>
+                    <td>Komponen struktur utama—tidak boleh rusak kecuali <em>catastrophic failure</em>.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 style="font-size: 1.08rem; margin-bottom: 8px;">Ekonomi Before vs After Failure, CAT Reman vs PEX &amp; Oil Top-Up</h3>
+            <div class="g-2" style="margin-bottom: 16px;">
+              <div class="panel">
+                <strong style="font-size: 0.92rem;">Before vs After Failure &amp; Reman / PEX</strong>
+                <ul style="font-size: 0.84rem; color: var(--ink-sub); padding-left: 18px; margin: 8px 0 0 0;">
+                  <li><strong>Engine 3306:</strong> Before Failure = <strong>Rp 1.600/jam</strong> vs After Failure = <strong>Rp 2.700/jam</strong>.</li>
+                  <li><strong>Turbocharger 3516:</strong> Before Failure = <strong>Rp 667/jam</strong> vs After Failure = <strong>Rp 1.590/jam</strong> (atau Rp 1.000/jam ganti cartridge).</li>
+                  <li><strong>CAT Reman:</strong> Komponen rekondisi pabrik CAT (harga <strong>20%–80% dari baru</strong> dengan tukar <em>Core</em> layak rekondisi; garansi setara baru).</li>
+                  <li><strong>PEX (Parts Exchange):</strong> Tukar tambah komponen siap pasang dari Trakindo agar unit cepat kembali bekerja.</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <strong style="font-size: 0.92rem;">Fuel Burn Overhaul &amp; Rasio Oli Make-Up (Seri 3400)</strong>
+                <ul style="font-size: 0.84rem; color: var(--ink-sub); padding-left: 18px; margin: 8px 0 0 0;">
+                  <li>Komponen sensitif beban (liner, ring piston) lebih akurat dipantau dengan <strong>konsumsi solar kumulatif (Fuel Burn)</strong> selain SMU.</li>
+                  <li><strong>1 L Oli : 400 L Solar</strong> &rarr; Engine baru / penyekatan sangat baik.</li>
+                  <li><strong>1 L Oli : 300 L Solar</strong> &rarr; Keausan normal operasional.</li>
+                  <li><strong>1 L Oli : 200 L Solar</strong> &rarr; <strong>Waspada!</strong> Indikasi ring piston aus, jadwalkan overhaul.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="tbl-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Seri Engine CAT</th>
+                    <th>Contoh Aplikasi Unit</th>
+                    <th>Acuan Fuel Burn Overhaul</th>
+                    <th>Estimasi SMU</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>3114 / 3116 / 3126</strong></td>
+                    <td>Excavator 320, Wheel Loader 924–950</td>
+                    <td>150.000 – 220.000 Liter Solar</td>
+                    <td>8.000 – 10.000 Jam</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3304 / 3306</strong></td>
+                    <td>Dozer D6/D7, Motor Grader 140H</td>
+                    <td>300.000 – 380.000 Liter Solar</td>
+                    <td>10.000 – 12.000 Jam</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3406 / 3408 / 3412</strong></td>
+                    <td>Dozer D8/D9, Off-Highway Truck 769/773</td>
+                    <td>650.000 – 1.100.000 Liter Solar</td>
+                    <td>12.000 – 15.000 Jam</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3508 / 3512 / 3516</strong></td>
+                    <td>OHT 777/785/789/793, Dozer D10/D11</td>
+                    <td>1.800.000 – 3.500.000 Liter Solar</td>
+                    <td>15.000 – 20.000 Jam</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-TAB 2B: DIESEL ENGINE, LUBRICATION & S.O.S DETAIL (APLTCL071) -->
+        <div id="view-mat-engine" class="sub-view">
+          <h3 style="font-size: 1.08rem; margin-bottom: 10px;">1. Dasar Diesel Engine &amp; Istilah Teknis Pengukuran</h3>
+          <div class="g-2" style="margin-bottom: 18px;">
+            <div class="panel">
+              <strong style="font-size: 0.93rem;">Komponen Utama &amp; Siklus 4-Langkah</strong>
+              <ul style="font-size: 0.84rem; color: var(--ink-sub); padding-left: 18px; margin: 8px 0 0 0;">
+                <li><strong>4-Stroke Cycle:</strong> <em>Intake</em> (hisap udara bersih), <em>Compression</em> (kompresi udara tinggi hingga panas), <em>Power</em> (injeksi bahan bakar &rarr; ledakan tenaga), <em>Exhaust</em> (buang gas sisa ke turbocharger).</li>
+                <li><strong>Cylinder Liner:</strong> <em>Wet Liner</em> (didinginkan langsung oleh coolant dengan seal O-ring) vs <em>Dry Liner</em> (dinding blok lebih tebal, tidak kontak langsung dengan coolant).</li>
+                <li><strong>Piston &amp; Vibration Damper:</strong> <em>Two-piece piston</em> (crown baja/alumunium + skirt) dengan <em>compression ring</em> &amp; <em>oil control ring</em>; <em>vibration damper</em> meredam getaran puntir crankshaft.</li>
+                <li><strong>Valve Train:</strong> Mekanisme buka-tutup katup (<em>push rod</em>, <em>overhead camshaft</em>, atau <em>cam in head</em>) yang mengatur pernapasan silinder.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <strong style="font-size: 0.93rem;">Terminologi Performa &amp; Tenaga Mesin</strong>
+              <ul style="font-size: 0.84rem; color: var(--ink-sub); padding-left: 18px; margin: 8px 0 0 0;">
+                <li><strong>Bore &amp; Stroke:</strong> Diameter silinder (<em>bore</em>) dan jarak gerak piston dari TMB ke TMA (<em>stroke</em>).</li>
+                <li><strong>Displacement:</strong> Total volume langkah seluruh silinder mesin.</li>
+                <li><strong>Compression Ratio:</strong> Perbandingan volume silinder saat piston di TMB vs di TMA (diesel tinggi agar bahan bakar menyala karena panas kompresi).</li>
+                <li><strong>Volumetric Efficiency:</strong> Kemampuan silinder menghisap udara aktual dibanding volume langkah teoritis.</li>
+                <li><strong>Torque vs Horsepower:</strong> <em>Torque</em> = gaya puntir (penting saat menanjak/beban berat); <em>Horsepower (HP)</em> = laju kerja (<span class="mono">[Torque &times; RPM] / 5252</span>).</li>
+                <li><strong>Brake Power &amp; Thermal Efficiency:</strong> Daya bersih di flywheel (<em>Brake Power</em>) dan efisiensi perubahan energi panas bahan bakar menjadi kerja mekanis (<em>Thermal Efficiency</em>).</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 style="font-size: 1.08rem; margin-bottom: 10px;">2. Sistem Pelumasan, Katup Pengaman, TBN &amp; Aditif Oli</h3>
+          <div class="g-2" style="margin-bottom: 18px;">
+            <div class="panel">
+              <strong style="font-size: 0.93rem;">Sirkulasi Oli, Pompa &amp; Relief vs By-Pass Valve</strong>
+              <ul style="font-size: 0.84rem; color: var(--ink-sub); padding-left: 18px; margin: 8px 0 0 0;">
+                <li><strong>Sirkulasi &amp; Pompa:</strong> Oli dari <em>oil pan</em> dihisap lewat <em>suction bell</em> oleh <em>oil pump</em> (tipe <em>gear</em> atau <em>rotor</em>) menuju filter, pendingin, saluran utama, dan <em>piston cooling jet</em>.</li>
+                <li><strong>Relief Valve:</strong> Membatasi tekanan maksimum sistem pelumasan agar seal/komponen tidak jebol saat oli dingin atau putaran tinggi.</li>
+                <li><strong>By-Pass Valve (Filter &amp; Cooler):</strong> Membuka jalur pintas bila elemen filter buntu atau oli terlalu kental saat dingin sehingga mesin tetap mendapat pelumasan (mencegah <em>starvation</em>).</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <strong style="font-size: 0.93rem;">TBN &amp; 7 Aditif Pelumas</strong>
+              <ul style="font-size: 0.84rem; color: var(--ink-sub); padding-left: 18px; margin: 8px 0 0 0;">
+                <li><strong>TBN (Total Base Number):</strong> Mengukur cadangan kebasaan oli untuk menetralkan asam hasil pembakaran sulfur solar (mencegah korosi bearing &amp; liner).</li>
+                <li><strong>7 Aditif Utama:</strong> (1) <em>Detergent</em> (bersihkan deposit suhu tinggi), (2) <em>Dispersant</em> (jaga jelaga/soot tetap melayang), (3) <em>Anti-Wear</em> (lapisan pelindung gesek logam), (4) <em>Alkali / TBN reserve</em>, (5) <em>Oxidation Inhibitor</em> (cegah pengentalan/oksidasi), (6) <em>Pour Point Depressant</em> (tetap cair di suhu rendah), (7) <em>Viscosity Index Improver</em> (stabilkan kekentalan terhadap suhu).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tbl-box" style="margin-bottom: 18px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Produk Oli CAT</th>
+                  <th>Aplikasi Utama</th>
+                  <th>Keunggulan &amp; Karakteristik Utama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>CAT DEO CI-4</strong></td>
+                  <td>Diesel Engine</td>
+                  <td><em>Soot dispersancy</em> tinggi untuk menahan jelaga (soot) dan menjaga kebersihan piston/ring.</td>
+                </tr>
+                <tr>
+                  <td><strong>CAT TDTO</strong></td>
+                  <td>Transmission &amp; Drive Train</td>
+                  <td>Karakteristik gesek tepat untuk <em>clutch &amp; disc</em> agar tidak slip serta melindungi gear &amp; bearing.</td>
+                </tr>
+                <tr>
+                  <td><strong>CAT Hydo</strong></td>
+                  <td>Hydraulic System</td>
+                  <td>Mengandung ~<strong>1.300 ppm Zinc</strong> (anti-wear) dan sifat <em>water dispersion</em> untuk mengatasi uap air/embun.</td>
+                </tr>
+                <tr>
+                  <td><strong>CAT FDAO</strong></td>
+                  <td>Final Drive &amp; Axle</td>
+                  <td>Formulasi beban tekan tinggi (<em>extreme pressure</em>) untuk roda gigi final drive alat berat.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 style="font-size: 1.08rem; margin-bottom: 10px;">3. S.O.S Lab (Jakarta &amp; Balikpapan), 8 Unsur &amp; 3 Keterbatasan</h3>
+          <div class="panel">
+            <p style="font-size: 0.85rem; color: var(--ink-sub); margin-bottom: 8px;">
+              Trakindo mengoperasikan fasilitas lab <strong>CAT S&bull;O&bull;S&#8480;</strong> di <strong>Jakarta</strong> dan <strong>Balikpapan</strong>. Sampel diambil melalui <strong>Live Sample Point / Sample Valve</strong> (saat unit hangat/operasi) atau <strong>Vacuum Pump</strong> dengan menjaga kebersihan botol agar bebas kontaminasi. Temuan kritis wajib direspons cepat (<strong>&lt;24 jam</strong>).
+            </p>
+            <p style="font-size: 0.85rem; color: var(--ink-sub); margin-bottom: 8px;">
+              <strong>8 Unsur Utama S.O.S:</strong> <strong>Aluminium (Al)</strong> [piston/bearing], <strong>Copper (Cu)</strong> [bearing/bushing/thrust], <strong>Chromium (Cr)</strong> [ring piston/liner chrome], <strong>Silicon (Si)</strong> [debu/kotoran luar], <strong>Lead (Pb)</strong> [lapisan bearing], <strong>Iron (Fe)</strong> [liner/crankshaft/gear], <strong>Magnesium (Mg)</strong> [aditif/alloy], <strong>Molybdenum (Mo)</strong> [aditif/ring], dan <strong>Sodium (Na)</strong> [indikasi coolant/air].
+            </p>
+            <p style="font-size: 0.85rem; color: var(--err-ink); font-weight: 600;">
+              3 Keterbatasan S.O.S (Wajib Dikombinasikan dengan Filter Cutting &amp; Magnetic Plug): (1) Tidak mendeteksi patah kelelahan mendadak (<em>fatigue</em>), (2) Tidak mendeteksi serpihan logam besar <strong>&gt;40 mikron</strong>, (3) Tidak mendeteksi kondisi <strong>kekurangan oli / low oil</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- SUB-TAB 2C: WEBSITE TRAKINDO & LINKEDIN PT TRAKINDO UTAMA -->
+        <div id="view-mat-trakindo" class="sub-view">
+          <div class="card-gold">
+            <span class="pill pill-dark" style="margin-bottom:8px;">REFERENSI: TRAKINDO.CO.ID &amp; LINKEDIN PT TRAKINDO UTAMA</span>
+            <h3 style="font-size: 1.12rem; margin-bottom: 6px;">PT Trakindo Utama — "Advancing You Forward" &amp; "Cepat &amp; Pasti"</h3>
+            <p style="font-size: 0.88rem; color: var(--ink-sub);">
+              Dealer resmi tunggal Caterpillar di Indonesia sejak 1971 (bagian dari <strong>PT Tiara Marga Trakindo / TMT</strong>), melayani berbagai sektor strategis termasuk pertambangan di <strong>Site Satui</strong>, Kalimantan Selatan. Mengusung semangat <strong>"Advancing You Forward"</strong> dan janji pelayanan <strong>"Cepat &amp; Pasti"</strong>.
+            </p>
+          </div>
+
+          <h3 style="font-size: 1.05rem; margin: 16px 0 10px 0;">Alur Kerja Harian Maintenance Coordination Analyst (Praktik Site &amp; LinkedIn)</h3>
+          <div class="panel" style="margin-bottom: 18px;">
+            <p style="font-size: 0.86rem; color: var(--ink-sub); line-height: 1.65;">
+              <strong>1. Tarik Data Telematika (VisionLink / Product Link):</strong> Validasi SMU harian, jam kerja, konsumsi solar, dan <em>event/diagnostic code</em> seluruh unit.<br/>
+              <strong>2. Validasi Jadwal &amp; Biaya (AMT / Sistem Perencanaan):</strong> Cek jadwal PM 250/500/1000/2000 jam, backlog, dan rencana PCR.<br/>
+              <strong>3. Koordinasi Work Order &amp; Parts (H-14):</strong> Pastikan filter, oli, dan suku cadang siap di <em>warehouse</em> sebelum unit masuk bay.<br/>
+              <strong>4. Eksekusi &amp; Monitoring Lapangan (Workshop / Field):</strong> Sinkronkan jadwal release unit bersama pengawas tambang, mekanik, dan hasil inspeksi CAT Inspect / S.O.S.<br/>
+              <strong>5. Closing WO, Klasifikasi Downtime &amp; Laporan KPI:</strong> Tutup WO tepat waktu, pisahkan <em>downtime</em> tanggung jawab dealer vs pelanggan pada kontrak <strong>MARC / CVA</strong>, lalu laporkan PA, MA, UA, MTTR, dan MTBS.
+            </p>
+          </div>
+
+          <h3 style="font-size: 1.05rem; margin: 16px 0 10px 0;">Kontrak MARC &amp; CVA — Membedakan Downtime Dealer vs Customer</h3>
+          <div class="g-2" style="margin-bottom: 18px;">
+            <div class="panel">
+              <span class="pill pill-err" style="margin-bottom:6px;">Umumnya Downtime Dealer / Maintenance</span>
+              <p style="font-size: 0.84rem; color: var(--ink-sub);">
+                Kerusakan tak terduga (<em>unscheduled breakdown</em>) akibat keausan/perawatan, keterlambatan suku cadang dari pihak layanan, atau durasi PM/perbaikan yang melebihi standar kontrak (sesuai klausul MARC/CVA).
+              </p>
+            </div>
+            <div class="panel">
+              <span class="pill pill-info" style="margin-bottom:6px;">Umumnya Downtime Customer / Operasi</span>
+              <p style="font-size: 0.84rem; color: var(--ink-sub);">
+                Unit tidak dilepas operasi saat jadwal PM sudah tiba, <em>misoperation</em>/kesalahan operator, kecelakaan kerja/tabrakan, atau hambatan eksternal tambang (misalnya antrean unit/kondisi area kerja).
+              </p>
+            </div>
+          </div>
+
+          <h3 style="font-size: 1.05rem; margin: 16px 0 10px 0;">6 Core Values &amp; Tautan Resmi</h3>
+          <div class="g-3" style="margin-bottom: 18px;">
+            <div class="panel"><strong>1. Integrity</strong><p style="font-size:0.83rem; color:var(--ink-sub); margin-top:4px;">Data SMU, jam breakdown, dan laporan kontrak jujur serta dapat dipertanggungjawabkan.</p></div>
+            <div class="panel"><strong>2. Continuous Development</strong><p style="font-size:0.83rem; color:var(--ink-sub); margin-top:4px;">Terus belajar teknologi alat berat, SIS 2.0, VisionLink, dan analisis data.</p></div>
+            <div class="panel"><strong>3. Excellence</strong><p style="font-size:0.83rem; color:var(--ink-sub); margin-top:4px;">Akurasi perencanaan dan eksekusi berkualitas tinggi untuk keandalan armada.</p></div>
+            <div class="panel"><strong>4. Proactive Accountability</strong><p style="font-size:0.83rem; color:var(--ink-sub); margin-top:4px;">Bertindak proaktif mencegah masalah sebelum terjadi (<em>Before Failure</em>).</p></div>
+            <div class="panel"><strong>5. Teamwork</strong><p style="font-size:0.83rem; color:var(--ink-sub); margin-top:4px;">Kolaborasi solid antara Analis, Planner, Mekanik, Parts, dan tim pelanggan.</p></div>
+            <div class="panel"><strong>6. Safety (Zero Harm)</strong><p style="font-size:0.83rem; color:var(--ink-sub); margin-top:4px;">Keselamatan kerja (K3, LOTO, JSA) selalu menjadi prioritas utama.</p></div>
+          </div>
+
+          <div class="g-2">
+            <a href="https://www.trakindo.co.id/id/equipment-maintenance" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="justify-content:space-between;">
+              <span>trakindo.co.id — Equipment Maintenance</span><span>&nearr;</span>
+            </a>
+            <a href="https://www.linkedin.com/company/pt-trakindo-utama/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="justify-content:space-between;">
+              <span>LinkedIn — PT Trakindo Utama</span><span>&nearr;</span>
+            </a>
+            <a href="https://www.trakindo.co.id/id/teknologi" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="justify-content:space-between;">
+              <span>trakindo.co.id — Teknologi Digital</span><span>&nearr;</span>
+            </a>
+            <a href="https://careers.trakindo.co.id/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="justify-content:space-between;">
+              <span>careers.trakindo.co.id — Karir &amp; Budaya</span><span>&nearr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SUB-TAB 2D: KAMUS ISTILAH WAJIB TAHU + KUIS 30 SOAL -->
+        <div id="view-mat-baru" class="sub-view">
+<div class="card" style="margin:0;box-shadow:none">
+<h3>Sistem Hidrolik</h3>
+<ul><li><strong>Komponen:</strong> tangki, pompa (piston/gear), control valve, silinder, motor hidrolik, filter &amp; cooler.</li>
+<li><strong>Tekanan vs aliran:</strong> aliran (L/min) menentukan kecepatan gerak; tekanan (bar/psi) menentukan gaya. Relief valve membatasi tekanan maksimum.</li>
+<li><strong>Gejala umum:</strong> gerakan lambat (pompa aus/internal leak), panas berlebih (cooler kotor, relief bocor), bunyi bising (kavitasi, oli kurang).</li>
+<li><strong>Kebersihan:</strong> kontaminasi partikel penyebab utama kerusakan; ganti filter sesuai interval, cek hasil S.O.S hidrolik, gunakan CHS (<em>Custom Hydraulic Service</em>).</li>
+<li><strong>Safety:</strong> tekanan sisa — turunkan implemen, matikan mesin, lepas tekanan sebelum membuka selang (LOTO).</li></ul>
+<h3 style="margin-top:14px">Undercarriage &amp; GET</h3>
+<ul><li><strong>Komponen:</strong> track link, bushing, pin, roller, idler, sprocket, track shoe.</li>
+<li><strong>Penyebab aus cepat:</strong> track terlalu kencang, operasi di tanah abrasif, putaran mundur berlebih, salah ukuran shoe.</li>
+<li><strong>Pemantauan:</strong> pengukuran berkala lewat <strong>CTS</strong>, hasil dalam % aus; rencanakan penggantian/<em>turning</em> bushing sebelum 100%.</li>
+<li><strong>GET:</strong> cutting edge, tooth, adapter — inspeksi rutin, ganti sebelum adapter ikut aus.</li></ul>
+<h3 style="margin-top:14px">Sistem Bahan Bakar, Pendingin &amp; Kelistrikan</h3>
+<ul><li><strong>Bahan bakar:</strong> air &amp; kotoran di solar merusak injektor; kuras water separator, ganti primary/secondary filter tepat waktu.</li>
+<li><strong>Pendingin:</strong> pakai coolant sesuai spesifikasi, cek konsentrasi &amp; SCA; overheating sering dari radiator tersumbat atau kipas/thermostat bermasalah.</li>
+<li><strong>Kelistrikan:</strong> cek tegangan baterai, terminal bersih, alternator, grounding; jangan jumper tanpa prosedur.</li></ul>
+<h3 style="margin-top:14px">Perencanaan PM &amp; Parts</h3>
+<ul><li><strong>Interval PM:</strong> 250 / 500 / 1000 / 2000 / 4000 jam (ikuti OMM unit). Prediksi tanggal PM = (SMU target − SMU sekarang) ÷ rata-rata jam/hari.</li>
+<li><strong>Order parts H-14:</strong> kit PM (filter, oli), cek stok warehouse, lead time, dan jadwal bay.</li>
+<li><strong>Rumus KPI:</strong> PA = (jam kalender − downtime) ÷ jam kalender; MA = jam operasi ÷ (jam operasi + downtime maintenance); UA = jam operasi ÷ jam tersedia; MTTR = total waktu perbaikan ÷ jumlah kejadian; MTBS = jam operasi ÷ jumlah kejadian.</li></ul>
+<h3 style="margin-top:14px">JSA &amp; Prioritas Pekerjaan</h3>
+<ul><li><strong>JSA:</strong> uraikan langkah kerja → identifikasi bahaya → tentukan kontrol → komunikasikan ke tim sebelum mulai.</li>
+<li><strong>Hirarki kontrol:</strong> eliminasi → substitusi → rekayasa → administratif → APD.</li>
+<li><strong>Prioritas backlog:</strong> safety &gt; unit down (P1) &gt; berpotensi down &gt; rutin; eskalasi bila &gt;30 hari.</li></ul>
+</div></div>
+<div id="view-mat-kamus" class="sub-view">
+          <h3 style="font-size: 1.12rem; margin-bottom: 6px;">Kamus Istilah &amp; Akronim Wajib Tahu (Site Satui)</h3>
+          <p style="font-size: 0.85rem; color: var(--ink-sub); margin-bottom: 12px;">
+            Cari istilah atau saring per kategori, lalu klik <strong>"+ Buku Saku"</strong> untuk menyimpannya ke catatan belajar Anda.
+          </p>
+
+          <div class="g-2" style="margin-bottom: 12px;">
+            <div class="inp-group" style="margin-bottom:0;">
+              <input type="text" id="dict-search" class="inp" placeholder="Ketik istilah: SMU, MARC, CVA, PCR, PEX, CTS, TBN, LOTO..." oninput="renderDictionary()" />
+            </div>
+            <div class="inp-group" style="margin-bottom:0;">
+              <select id="dict-cat" class="sel" onchange="renderDictionary()">
+                <option value="ALL">Semua Kategori Istilah</option>
+                <option value="Kontrak & Sistem">Kontrak &amp; Sistem EM</option>
+                <option value="Perawatan & KPI">Perawatan, Backlog &amp; KPI</option>
+                <option value="Engine & Oli">Engine, Oli &amp; S.O.S</option>
+                <option value="Safety K3">Safety K3 &amp; LOTO</option>
+<option value="Hidrolik &amp; Undercarriage">Hidrolik &amp; Undercarriage</option>
+<option value="Alat &amp; Parts">Alat &amp; Parts</option>
+              </select>
+            </div>
+          </div>
+          <div id="dict-list" style="margin-bottom: 26px;"></div>
+
+          <hr style="border:none; border-top:1px solid var(--line); margin: 24px 0;" />
+
+          <div class="card-head">
+            <div>
+              <h3 style="font-size: 1.12rem;">Kuis Evaluasi APLTCL071 &amp; Trakindo EM (30 Soal)</h3>
+              <p style="font-size: 0.84rem; color: var(--ink-sub); margin-top: 3px;">Uji pemahaman Anda sebelum bertugas di Site Satui.</p>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline" onclick="retryWrong()">Ulang Soal Salah</button> <button type="button" class="btn btn-sm btn-outline" onclick="resetQuizState()">Reset Kuis</button>
+          </div>
+          <div id="quiz-list"></div>
+          <div style="margin-top: 14px; display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
+            <button type="button" class="btn btn-dark" onclick="submitQuizState()">Nilai &amp; Tampilkan Pembahasan</button>
+            <span id="quiz-score-banner" style="font-weight: 700; font-size: 0.92rem;"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 3: ALAT KERJA SIMPEL (MUDAH DIBACA & TIDAK MEMBINGUNGKAN)
+         ====================================================================== -->
+    <section id="sec-alat" class="page-view">
+
+<div class="card" id="extra-card" style="margin-bottom:16px">
+<div class="card-head"><div><span class="kicker">PENCARIAN, FOTO, S.O.S, LAPORAN &amp; PENGATURAN</span><h2 style="font-size:1.2rem">Alat Tambahan</h2></div></div>
+<input id="g-q" class="field" placeholder="🔍 Cari di semua materi &amp; kamus..." oninput="globalSearch(this.value)"><div id="g-res" style="margin:8px 0"></div>
+<h3 style="font-size:1rem">Kartu Hafalan Istilah</h3>
+<div id="fc" style="padding:12px;border:1px dashed var(--line-strong);border-radius:12px;cursor:pointer;margin:6px 0" onclick="flipFC()"></div>
+<button class="hdr-install-btn" onclick="nextFC()">Istilah Berikutnya</button>
+<h3 style="margin-top:14px;font-size:1rem">Foto Bukti Temuan</h3>
+<input id="ph-note" class="field" placeholder="Catatan (unit, temuan)"><input type="file" accept="image/*" capture="environment" onchange="addPhoto(this)" style="margin-top:6px">
+<div id="ph-list" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px"></div>
+<h3 style="margin-top:14px;font-size:1rem">Riwayat Hasil S.O.S</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px">
+<input id="s-no" list="unit-dl" class="field" placeholder="Unit"><input id="s-fe" type="number" class="field" placeholder="Fe ppm"><input id="s-cu" type="number" class="field" placeholder="Cu ppm"><input id="s-tbn" type="number" step="0.1" class="field" placeholder="TBN"></div>
+<button class="hdr-install-btn" style="margin-top:8px" onclick="addSOS()">+ Simpan</button><div id="s-list" style="margin-top:8px;font-size:.88rem"></div>
+<h3 style="margin-top:14px;font-size:1rem">Grafik Downtime per Unit</h3><div id="dt-chart"></div>
+
+<h3 style="margin-top:14px;font-size:1rem">Kalkulator PM dari Register Unit</h3>
+<select id="pm-pick" class="field" onchange="pickUnitPM(this.value)"><option value="">Pilih unit...</option></select>
+<datalist id="unit-dl"></datalist>
+<h3 style="margin-top:14px;font-size:1rem">Template Laporan WhatsApp</h3>
+<button class="hdr-install-btn" onclick="buildReport('harian')">Laporan Harian</button>
+<button class="hdr-install-btn" onclick="buildReport('mingguan')">Laporan Mingguan</button>
+<textarea id="rep-out" class="field" rows="8" style="margin-top:8px" placeholder="Hasil laporan muncul di sini..."></textarea>
+<button class="hdr-install-btn" style="margin-top:6px" onclick="copyRep()">Salin / Bagikan</button>
+<h3 style="margin-top:14px;font-size:1rem">Kunci PIN</h3>
+<input id="pin-in" type="password" inputmode="numeric" maxlength="6" class="field" placeholder="PIN 4-6 angka">
+<button class="hdr-install-btn" style="margin-top:6px" onclick="setPin()">Simpan PIN</button>
+<button class="hdr-install-btn" style="margin-top:6px" onclick="setPin(true)">Hapus PIN</button>
+<div id="bk-note" style="margin-top:10px;font-size:.85rem"></div>
+<h3 style="margin-top:14px;font-size:1rem">Laporan &amp; Pengaturan</h3>
+<button class="hdr-install-btn" onclick="shareReport()">Bagikan Ringkasan</button>
+<button class="hdr-install-btn" onclick="askNotif()">Aktifkan Notifikasi</button>
+<button class="hdr-install-btn" onclick="toggleDark()">🌙 Mode Gelap</button>
+<button class="hdr-install-btn" onclick="bigFont()">A+ Huruf Besar</button>
+</div>
+<div class="card" id="unit-card" style="margin-bottom:16px">
+<div class="card-head"><div><span class="kicker">REGISTER UNIT, LOG DOWNTIME &amp; DATA</span><h2 style="font-size:1.2rem">Register Unit &amp; Pengingat PM</h2></div></div>
+<div id="unit-alerts" style="margin-bottom:10px"></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px">
+<input id="u-no" placeholder="No. unit (mis. DT-101)" class="field"><input id="u-model" placeholder="Model" class="field">
+<input id="u-smu" type="number" placeholder="SMU sekarang" class="field"><input id="u-rate" type="number" placeholder="Jam/hari" class="field">
+<input id="u-pm" type="number" placeholder="SMU PM berikut" class="field"></div>
+<button class="hdr-install-btn" style="margin-top:8px" onclick="addUnit()">+ Tambah Unit</button>
+<div id="unit-list" style="margin-top:10px;overflow-x:auto"></div>
+<h3 style="margin-top:14px;font-size:1rem">Log Downtime</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:6px">
+<input id="d-no" list="unit-dl" placeholder="No. unit" class="field"><input id="d-hrs" type="number" step="0.1" placeholder="Jam downtime" class="field">
+<select id="d-by" class="field"><option>Dealer</option><option>Customer</option></select><input id="d-note" placeholder="Catatan" class="field"></div>
+<button class="hdr-install-btn" style="margin-top:8px" onclick="addDowntime()">+ Catat</button>
+<div id="dt-summary" style="margin-top:8px;font-size:.9rem"></div>
+<h3 style="margin-top:14px;font-size:1rem">Cadangkan Data</h3>
+<button class="hdr-install-btn" onclick="exportData()">Export JSON</button>
+<label class="hdr-install-btn" style="cursor:pointer;margin-left:6px">Import JSON<input type="file" accept=".json" hidden onchange="importData(this)"></label>
+</div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="kicker">ALAT BANTU LAPANGAN • DIRANCANG SIMPEL</span>
+            <h2 style="font-size: 1.3rem;">Alat Kerja Harian Maintenance Coordination Analyst</h2>
+            <p style="font-size: 0.85rem; color: var(--ink-sub); margin-top: 3px;">
+              Pilih salah satu skenario cepat atau isi angka sederhana—hasil dan langkah tindak lanjut langsung muncul.
+            </p>
+          </div>
+        </div>
+
+        <div class="sub-tabs">
+          <button type="button" class="sub-tab active" onclick="switchSubTab(this, 'tool-kpi-box')">1. Kalkulator KPI &amp; Downtime</button>
+          <button type="button" class="sub-tab" onclick="switchSubTab(this, 'tool-pm-oil-box')">2. Jadwal PM &amp; Oli/Solar</button>
+          <button type="button" class="sub-tab" onclick="switchSubTab(this, 'tool-sos-loto-box')">3. S.O.S, Filter &amp; LOTO</button>
+          <button type="button" class="sub-tab" onclick="switchSubTab(this, 'tool-backlog-msg-box')">4. Backlog &amp; Pesan Cepat</button>
+        </div>
+
+        <!-- TOOL 1: KPI + MARCK/CVA DOWNTIME CHECKER -->
+        <div id="tool-kpi-box" class="sub-view active">
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px;">
+            <h3 style="font-size: 1.06rem;">Hitung PA, MA, UA, MTTR &amp; MTBS</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <button type="button" class="btn btn-sm btn-outline" onclick="setKPIPreset('normal')">Contoh Normal</button>
+              <button type="button" class="btn btn-sm btn-outline" onclick="setKPIPreset('repair')">Contoh Repair Tinggi</button>
+              <button type="button" class="btn btn-sm btn-outline" onclick="setKPIPreset('standby')">Contoh Standby Tinggi</button>
+            </div>
+          </div>
+
+          <div class="g-4">
+            <div class="inp-group">
+              <label for="in-w">Jam Kerja / W (Working)</label>
+              <input type="number" id="in-w" class="inp" value="480" min="0" oninput="runKPITool()" />
+            </div>
+            <div class="inp-group">
+              <label for="in-s">Jam Standby / S (Ready)</label>
+              <input type="number" id="in-s" class="inp" value="140" min="0" oninput="runKPITool()" />
+            </div>
+            <div class="inp-group">
+              <label for="in-r">Jam Repair &amp; PM / R</label>
+              <input type="number" id="in-r" class="inp" value="52" min="0" oninput="runKPITool()" />
+            </div>
+            <div class="inp-group">
+              <label for="in-n">Jumlah Breakdown (Kali)</label>
+              <input type="number" id="in-n" class="inp" value="8" min="1" oninput="runKPITool()" />
+            </div>
+          </div>
+
+          <div class="result-box">
+            <div class="g-4" style="gap:12px;">
+              <div>
+                <span class="kicker">PA (Kesiapan Fisik)</span>
+                <div class="big-num" id="out-pa">92.26%</div>
+                <div class="mono" style="font-size:0.75rem; color:var(--ink-muted);">(W+S)/(W+S+R)</div>
+              </div>
+              <div>
+                <span class="kicker">MA (Keandalan Mekanis)</span>
+                <div class="big-num" id="out-ma">90.23%</div>
+                <div class="mono" style="font-size:0.75rem; color:var(--ink-muted);">W/(W+R)</div>
+              </div>
+              <div>
+                <span class="kicker">UA (Pemakaian Unit)</span>
+                <div class="big-num" id="out-ua">77.42%</div>
+                <div class="mono" style="font-size:0.75rem; color:var(--ink-muted);">W/(W+S)</div>
+              </div>
+              <div>
+                <span class="kicker">MTTR / MTBS</span>
+                <div class="big-num" style="font-size:1.35rem;" id="out-mttr-mtbs">6.5j / 60.0j</div>
+                <div class="mono" style="font-size:0.75rem; color:var(--ink-muted);">Repair/N &bull; Work/N</div>
+              </div>
+            </div>
+            <div class="action-guide" id="out-kpi-guide">Memuat saran...</div>
+          </div>
+
+          <hr style="border:none; border-top:1px solid var(--line); margin: 22px 0;" />
+
+          <h3 style="font-size: 1.06rem; margin-bottom: 8px;">Cek Cepat Tanggung Jawab Downtime (Kontrak MARC / CVA)</h3>
+          <div class="g-2">
+            <div class="inp-group" style="margin-bottom:0;">
+              <label for="sel-dt-case">Pilih Kejadian Downtime Unit</label>
+              <select id="sel-dt-case" class="sel" onchange="runDowntimeCheck()">
+                <option value="unplanned">Kerusakan komponen / breakdown saat operasi</option>
+                <option value="parts">Unit tertahan karena suku cadang belum tiba</option>
+                <option value="not_released">Jadwal PM sudah tiba, tapi unit belum dilepas operasi</option>
+                <option value="misop">Kesalahan operator / overspeed / tabrakan unit</option>
+              </select>
+            </div>
+            <div class="panel" id="out-dt-box" style="padding:14px;">Memuat...</div>
+          </div>
+        </div>
+
+        <!-- TOOL 2: PM PREDICTOR + OIL TOP-UP vs FUEL BURN -->
+        <div id="tool-pm-oil-box" class="sub-view">
+          <h3 style="font-size: 1.06rem; margin-bottom: 8px;">A. Kapan Unit Masuk PM &amp; Kapan Order Parts (H-14)?</h3>
+          <div class="g-2">
+            <div class="inp-group">
+              <label for="in-pm-smu">SMU Unit Sekarang (Jam)</label>
+              <input type="number" id="in-pm-smu" class="inp" value="14965" min="0" oninput="runPMTool()" />
+            </div>
+            <div class="inp-group">
+              <label for="in-pm-hpd">Rata-Rata Jam Jalan / Hari</label>
+              <input type="number" id="in-pm-hpd" class="inp" value="18" min="1" max="24" oninput="runPMTool()" />
+            </div>
+          </div>
+          <div class="result-box" id="out-pm-box"></div>
+
+          <hr style="border:none; border-top:1px solid var(--line); margin: 22px 0;" />
+
+          <h3 style="font-size: 1.06rem; margin-bottom: 8px;">B. Cek Rasio Penambahan Oli (Top-Up) vs Konsumsi Solar</h3>
+          <div class="g-3">
+            <div class="inp-group">
+              <label for="in-fuel-used">Solar Terpakai (Liter)</label>
+              <input type="number" id="in-fuel-used" class="inp" value="9000" min="1" oninput="runOilRatioTool()" />
+            </div>
+            <div class="inp-group">
+              <label for="in-oil-added">Oli Ditambahkan / Top-Up (Liter)</label>
+              <input type="number" id="in-oil-added" class="inp" value="45" min="0.1" step="0.5" oninput="runOilRatioTool()" />
+            </div>
+            <div class="inp-group">
+              <label for="in-cum-fuel">Total Solar Kumulatif Sejak Overhaul (L)</label>
+              <input type="number" id="in-cum-fuel" class="inp" value="720000" min="0" oninput="runOilRatioTool()" />
+            </div>
+          </div>
+          <div class="result-box" id="out-oil-box"></div>
+        </div>
+
+        <!-- TOOL 3: S.O.S QUICK PICKER + FILTER CUTTING/MAGNET + 6-STEP LOTO -->
+        <div id="tool-sos-loto-box" class="sub-view">
+          <h3 style="font-size: 1.06rem; margin-bottom: 8px;">A. Cek Cepat Hasil Lab Oli (S.O.S)</h3>
+          <div class="g-2">
+            <div class="inp-group">
+              <label for="sel-sos-symptom">Pilih Unsur / Gejala yang Naik di Laporan Lab</label>
+              <select id="sel-sos-symptom" class="sel" onchange="runSOSSimple()">
+                <option value="si">Silicon (Si) tinggi — ada debu/pasir masuk</option>
+                <option value="fe">Iron (Fe) tinggi — keausan logam besi (liner/gear/shaft)</option>
+                <option value="cu_pb">Copper (Cu) / Lead (Pb) tinggi — keausan bearing/bushing</option>
+                <option value="na">Sodium (Na) / coolant terdeteksi — potensi kebocoran coolant</option>
+                <option value="normal">Semua unsur normal — tidak ada lonjakan</option>
+              </select>
+            </div>
+            <div class="panel" id="out-sos-simple" style="padding:14px;">Memuat...</div>
+          </div>
+
+          <hr style="border:none; border-top:1px solid var(--line); margin: 22px 0;" />
+
+          <h3 style="font-size: 1.06rem; margin-bottom: 8px;">B. Pemeriksaan Lapis Pertama (Filter Cutting &amp; Magnetic Plug)</h3>
+          <p style="font-size: 0.84rem; color: var(--ink-sub); margin-bottom: 10px;">
+            Penting karena S.O.S tidak mendeteksi serpihan logam besar (&gt;40 mikron) atau patah <em>fatigue</em> mendadak:
+          </p>
+          <div class="panel" style="margin-bottom: 18px;">
+            <ul style="font-size: 0.85rem; color: var(--ink-sub); padding-left: 18px; margin: 0;">
+              <li><strong>Magnetic Plug:</strong> Bersihkan dan periksa serbuk/serpihan logam pada magnet drain plug sebelum dibuang.</li>
+              <li><strong>Oil Filter Cutting:</strong> Potong elemen filter bekas dengan cutter khusus, buka lipatan kertas filter, dan cek apakah ada partikel logam berkilau atau kotoran kasar.</li>
+              <li><strong>Jika Ditemukan Serpihan:</strong> Simpan bukti fisik, foto, dan segera informasikan ke Service Leader sebelum unit dioperasikan kembali.</li>
+            </ul>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+            <h3 style="font-size: 1.06rem;">C. Checklist 6 Langkah Aman LOTO (Lockout / Tagout)</h3>
+            <button type="button" class="btn btn-sm btn-outline" onclick="resetLotoChecks()">Reset LOTO</button>
+          </div>
+          <div id="loto-check-list"></div>
+        </div>
+
+        <!-- TOOL 4: BACKLOG TRACKER (>30 DAY AGING) + 1-CLICK MESSAGE GENERATOR -->
+        <div id="tool-backlog-msg-box" class="sub-view">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+            <div>
+              <h3 style="font-size: 1.06rem;">A. Daftar Backlog &amp; Peringatan Umur &gt;30 Hari</h3>
+              <p style="font-size: 0.83rem; color: var(--ink-sub);">Catat temuan inspeksi agar tidak menumpuk menjadi kerusakan mendadak.</p>
+            </div>
+            <span class="pill pill-err" id="bl-aging-badge">Aging &gt;30 Hari: 0</span>
+          </div>
+
+          <div class="g-4">
+            <div class="inp-group">
+              <label for="bl-unit">Kode Unit</label>
+              <input type="text" id="bl-unit" class="inp" placeholder="Contoh: DT-777E-04" />
+            </div>
+            <div class="inp-group">
+              <label for="bl-desc">Temuan Singkat</label>
+              <input type="text" id="bl-desc" class="inp" placeholder="Contoh: Rembes hose hidrolik" />
+            </div>
+            <div class="inp-group">
+              <label for="bl-prio">Prioritas</label>
+              <select id="bl-prio" class="sel">
+                <option value="P1 Kritis">P1 Kritis</option>
+                <option value="P2 Sedang" selected>P2 Sedang</option>
+                <option value="P3 Rutin">P3 Rutin</option>
+              </select>
+            </div>
+            <div class="inp-group">
+              <label for="bl-age">Umur (Hari)</label>
+              <input type="number" id="bl-age" class="inp" value="5" min="0" />
+            </div>
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+            <button type="button" class="btn btn-gold" onclick="addBacklogRow()">+ Tambah Backlog</button>
+            <select id="bl-filter" class="sel" style="width:auto; min-width:185px;" onchange="renderBacklogList()">
+              <option value="ALL">Semua Status</option>
+              <option value="Open">Open</option>
+              <option value="Waiting Parts">Waiting Parts</option>
+              <option value="Scheduled">Scheduled</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+          <div id="backlog-list-box" style="margin-bottom: 22px;"></div>
+
+          <hr style="border:none; border-top:1px solid var(--line); margin: 22px 0;" />
+
+          <h3 style="font-size: 1.06rem; margin-bottom: 8px;">B. Generator Pesan / Laporan Cepat (1-Klik Salin)</h3>
+          <div class="g-3">
+            <div class="inp-group">
+              <label for="msg-type">Jenis Pesan</label>
+              <select id="msg-type" class="sel" onchange="buildQuickMessage()">
+                <option value="handover">Handover Shift Harian</option>
+                <option value="sos">Eskalasi S.O.S Kritis (&lt;24 Jam)</option>
+                <option value="pm">Permintaan Masuk Bay PM</option>
+                <option value="parts">Follow-Up Keterlambatan Parts</option>
+              </select>
+            </div>
+            <div class="inp-group">
+              <label for="msg-unit">Unit &amp; SMU</label>
+              <input type="text" id="msg-unit" class="inp" value="DT-777E-04 (SMU 14.965)" oninput="buildQuickMessage()" />
+            </div>
+            <div class="inp-group">
+              <label for="msg-info">Info Utama / Action</label>
+              <input type="text" id="msg-info" class="inp" value="PA 92.2% | Filter &amp; oli siap, masuk bay besok 07:30" oninput="buildQuickMessage()" />
+            </div>
+          </div>
+          <textarea id="msg-result" class="txt mono" rows="6" readonly style="background:var(--bg-page); font-size:0.84rem;"></textarea>
+          <div style="margin-top:10px;">
+            <button type="button" class="btn btn-gold" onclick="copyQuickMessage()">Salin Pesan</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 4: AI MENTOR & BUKU SAKU CATATAN
+         ====================================================================== -->
+    <section id="sec-ai" class="page-view">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="kicker">ASISTEN TANYA JAWAB (OFFLINE &amp; ONLINE)</span>
+            <h2 style="font-size: 1.3rem;">AI Mentor Trakindo EM &amp; APLTCL071</h2>
+            <p style="font-size: 0.85rem; color: var(--ink-sub); margin-top: 3px;">
+              Tanyakan materi PDF <strong>APLTCL071</strong>, referensi <strong>trakindo.co.id &amp; LinkedIn</strong>, arti istilah/akronim, perhitungan angka, atau jadwal harian Anda.
+            </p>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline" onclick="clearChatLog()">Bersihkan Chat</button>
+        </div>
+
+        <div class="preset-chips">
+          <button type="button" class="chip-btn" onclick="sendPresetQuestion('Jelaskan 8 elemen APLTCL071 secara ringkas dan jelas')">8 Elemen APLTCL071</button>
+          <button type="button" class="chip-btn" onclick="sendPresetQuestion('Apa beda Level I, II, dan III serta CAT Reman vs PEX?')">Level I/II/III &amp; Reman/PEX</button>
+          <button type="button" class="chip-btn" onclick="sendPresetQuestion('Apa ringkasan materi dari website dan LinkedIn Trakindo?')">Website &amp; LinkedIn</button>
+          <button type="button" class="chip-btn" onclick="sendPresetQuestion('Hitung KPI jika W=480, S=140, R=52 dan jumlah breakdown 8')">Hitung KPI (480, 140, 52)</button>
+          <button type="button" class="chip-btn" onclick="sendPresetQuestion('Apa 3 hal yang tidak bisa dideteksi S.O.S dan bagaimana cara mengeceknya?')">Keterbatasan S.O.S &amp; Filter</button>
+          <button type="button" class="chip-btn" onclick="sendPresetQuestion('Bagaimana jadwal harian saya sebelum 1 Desember dan di Site Satui?')">Jadwal Harian Saya</button>
+        </div>
+
+        <div id="chat-feed" class="chat-box" aria-live="polite"></div>
+
+        <form onsubmit="onChatSubmit(event)" style="display:flex; gap:10px; margin-top:14px;">
+          <input type="text" id="chat-input" class="inp" placeholder="Ketik pertanyaan Anda di sini..." autocomplete="off" required />
+          <button type="submit" id="chat-send" class="btn btn-dark" style="flex-shrink:0;">Kirim</button>
+        </form>
+      </div>
+
+      <!-- Pocket Notebook -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="kicker">CATATAN ISTILAH &amp; PEMBELAJARAN</span>
+            <h3 style="font-size: 1.15rem;">Buku Saku Istilah Wajib Tahu</h3>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline" onclick="downloadNotesTxt()">Unduh .TXT</button>
+        </div>
+
+        <div class="g-2">
+          <div class="inp-group">
+            <label for="note-term">Istilah / Topik</label>
+            <input type="text" id="note-term" class="inp" placeholder="Contoh: TBN / MARC / By-Pass Valve" />
+          </div>
+          <div class="inp-group">
+            <label for="note-body">Arti / Catatan Singkat</label>
+            <input type="text" id="note-body" class="inp" placeholder="Tulis catatan penting Anda..." />
+          </div>
+        </div>
+        <button type="button" class="btn btn-gold" onclick="addPocketEntry()">Simpan ke Buku Saku</button>
+
+        <div id="pocket-entries" style="margin-top: 18px;"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       MODAL PASANG KE LAYAR UTAMA HP (PWA + OFFLINE .HTML)
+       ======================================================================== -->
+  <div id="install-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="install-modal-title">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:12px;">
+        <div>
+          <span class="pill pill-gold" style="margin-bottom:6px;">PASANG KE LAYAR UTAMA</span>
+          <h3 id="install-modal-title" style="font-size: 1.18rem;">Trakindo EM Co-Pilot</h3>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline" onclick="closeInstallModal()" aria-label="Tutup">&times;</button>
+      </div>
+      <div id="inst-body" style="font-size:.9rem;line-height:1.7"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast-msg" role="status" aria-live="polite"></div>
+
+  <!-- FOOTER -->
+  <footer class="ftr">
+    <strong>Trakindo EM Co-Pilot • Equipment Management &amp; Field Assistant</strong><br/>
+    <span>Iqsa Arada Wd (Site Satui) &mdash; Referensi: Modul APLTCL071, Website Trakindo &amp; LinkedIn PT Trakindo Utama</span>
+  </footer>
+
+  <script>
+    /* ==========================================================================
+       1. STATE & PERSISTENCE
+       ========================================================================== */
+    const STORAGE_KEY = 'trakindo_em_copilot_v7';
+
+    const initialData = {
+      doneElements: [],
+      doneSchedule: [],
+      doneLoto: [],
+      probNotes: { m1: '', m2: '', m3: '' },
+      quizAnswers: {},
+      quizChecked: false,
+      backlogs: [
+        { id: 'b-1', unit: 'DT-777E-04', desc: 'Rembes oli pada hose steering pump', prio: 'P1 Kritis', status: 'Scheduled', age: 7 },
+        { id: 'b-2', unit: 'DZ-D10T2-01', desc: 'Keausan cutting edge & roller track kanan (CTS)', prio: 'P2 Sedang', status: 'Waiting Parts', age: 33 },
+        { id: 'b-3', unit: 'EX-395-02', desc: 'Sensor tekanan hidrolik boom tidak stabil', prio: 'P2 Sedang', status: 'Open', age: 11 }
+      ],
+      pocketNotes: [
+        { id: 'n-1', tag: 'MARC & CVA', date: '24 Nov 2026', text: 'MARC (Maintenance & Repair Contract) dan CVA (Customer Value Agreement): perjanjian dukungan perawatan & suku cadang CAT di site.' },
+        { id: 'n-2', tag: 'BEFORE FAILURE', date: '24 Nov 2026', text: 'Overhaul Engine 3306 Before Failure Rp 1.600/jam vs After Failure Rp 2.700/jam; Turbo 3516 Rp 667/jam vs Rp 1.590/jam.' },
+        { id: 'n-3', tag: 'ORDER PARTS H-14', date: '24 Nov 2026', text: 'Ajukan kebutuhan suku cadang PM maksimal H-14 sebelum SMU target tercapai.' }
+      ],
+      chatLog: [
+        {
+          role: 'ai',
+          text: 'Halo **Iqsa Arada Wd**! Saya siap membantu persiapan Anda sebagai **Maintenance Coordination Analyst** di **PT Trakindo Utama — Site Satui** (mulai **1 Desember 2026**).\n\nSilakan tanya tentang:\n- **8 Elemen APLTCL071**, Segitiga PM, Level I/II/III, CAT Reman vs PEX, Fuel Burn & Oil Top-Up\n- **Engine, Oli & S.O.S** (Wet vs Dry Liner, TBN, 7 aditif, CAT DEO/TDTO/Hydo/FDAO, 8 unsur & 3 keterbatasan S.O.S)\n- **Website & LinkedIn Trakindo** (Core Values, Cepat & Pasti, VisionLink, SIS 2.0, AMT, downtime MARC/CVA)\n- **Arti istilah/akronim**, perhitungan angka (KPI, SMU, S.O.S), atau **jadwal harian** Anda.'
+        }
+      ]
+    };
+
+    let state = readStorage();
+
+    function readStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return JSON.parse(JSON.stringify(initialData));
+        return { ...JSON.parse(JSON.stringify(initialData)), ...JSON.parse(raw) };
+      } catch (e) {
+        return JSON.parse(JSON.stringify(initialData));
+      }
+    }
+
+    function saveStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+      refreshMeters();
+    }
+
+    function notify(msg) {
+      const el = document.getElementById('toast');
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => el.classList.remove('show'), 2900);
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    /* ==========================================================================
+       2. PWA 512x512 CANVAS ICON, MANIFEST & INSTALL MODAL
+       ========================================================================== */
+    let promptEvent = null;
+
+    function buildCanvasIcon(size) {
+      const c = document.createElement('canvas');
+      c.width = size;
+      c.height = size;
+      const g = c.getContext('2d');
+
+      g.fillStyle = '#0F1115';
+      g.fillRect(0, 0, size, size);
+
+      const inset = Math.round(size * 0.065);
+      g.strokeStyle = '#F5C200';
+      g.lineWidth = Math.round(size * 0.03);
+      g.strokeRect(inset, inset, size - inset * 2, size - inset * 2);
+
+      const bx = Math.round(size * 0.14);
+      const by = Math.round(size * 0.24);
+      const bw = Math.round(size * 0.72);
+      const bh = Math.round(size * 0.23);
+      g.fillStyle = '#F5C200';
+      g.fillRect(bx, by, bw, bh);
+
+      g.fillStyle = '#0F1115';
+      g.font = `900 ${Math.round(size * 0.13)}px Arial, sans-serif`;
+      g.textAlign = 'center';
+      g.textBaseline = 'middle';
+      g.fillText('Trakindo', size / 2, by + bh / 2 + 1);
+
+      g.fillStyle = '#FFFFFF';
+      g.font = `700 ${Math.round(size * 0.105)}px Arial, sans-serif`;
+      g.fillText('EM CO-PILOT', size / 2, size * 0.62);
+
+      g.fillStyle = '#F5C200';
+      g.beginPath();
+      g.moveTo(size / 2, size * 0.72);
+      g.lineTo(size * 0.42, size * 0.84);
+      g.lineTo(size * 0.58, size * 0.84);
+      g.closePath();
+      g.fill();
+
+      return c.toDataURL('image/png');
+    }
+
+    function setupPWA() {
+      if (location.protocol.startsWith('http')) return;
+      try {
+        const icon512 = buildCanvasIcon(512);
+        const icon192 = buildCanvasIcon(192);
+        document.getElementById('pwa-apple-icon').href = icon512;
+        document.getElementById('pwa-favicon').href = icon192;
+
+        const manifestObj = {
+          name: 'Trakindo EM Co-Pilot — Akademi APLTCL071',
+          short_name: 'Trakindo EM',
+          start_url: './',
+          display: 'standalone',
+          background_color: '#FFFFFF',
+          theme_color: '#0F1115',
+          icons: [
+            { src: icon192, sizes: '192x192', type: 'image/png' },
+            { src: icon512, sizes: '512x512', type: 'image/png' }
+          ]
+        };
+        const blob = new Blob([JSON.stringify(manifestObj)], { type: 'application/manifest+json' });
+        document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
+      } catch (e) {}
+    }
+
+    /* INSTALL: lihat bagian PASANG KE LAYAR UTAMA di bawah */
+
+    /* ==========================================================================
+       3. NAVIGATION & ONBOARDING COUNTER
+       ========================================================================== */
+    function switchMainSec(secId) {
+      document.querySelectorAll('.page-view').forEach((v) => v.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach((b) => b.classList.toggle('active', b.dataset.sec === secId));
+      document.querySelectorAll('.bot-btn').forEach((b) => b.classList.toggle('active', b.dataset.sec === secId));
+
+      const target = document.getElementById(secId);
+      if (target) target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchSubTab(btn, viewId) {
+      const card = btn.closest('.card');
+      if (!card) return;
+      card.querySelectorAll('.sub-tab').forEach((b) => b.classList.remove('active'));
+      card.querySelectorAll('.sub-view').forEach((v) => v.classList.remove('active'));
+      btn.classList.add('active');
+      const v = document.getElementById(viewId);
+      if (v) v.classList.add('active');
+    }
+
+    function updateOnboardingBadge() {
+      const el = document.getElementById('onboarding-counter');
+      if (!el) return;
+      const start = new Date('2026-12-01T08:00:00+08:00');
+      const day = Math.floor((new Date() - start) / 864e5) + 1;
+      if (day < 1) el.textContent = 'Mulai 1 Des 2026';
+      else el.textContent = `Hari ke-${day} · Bulan ${Math.min(6, Math.ceil(day / 30))}/6 Probation`;
+    }
+
+    /* ==========================================================================
+       4. DAILY SCHEDULE PLANNER (PREP FROM 09:00 WITA & SITE SATUI 5-2)
+       ========================================================================== */
+    const prepSchedule = [
+      { id: 'p1', time: '09:00 – 10:30 WITA', title: 'Sesi 1: Baca Materi 8 Elemen & Repair (APLTCL071)', desc: 'Fokus pada Segitiga PM, Contamination Control (10–30 mikron), Level I/II/III, dan CAT Reman vs PEX.' },
+      { id: 'p2', time: '10:30 – 11:30 WITA', title: 'Sesi 2: Catat Istilah Wajib Tahu ke Buku Saku', desc: 'Tulis istilah penting (MARC, CVA, PCR, PEX, CTS, TBN, LOTO) di Buku Saku agar mudah diingat.' },
+      { id: 'p3', time: '11:30 – 13:30 WITA', title: 'Istirahat Siang & Makan', desc: 'Jeda istirahat siang.' },
+      { id: 'p4', time: '13:30 – 14:45 WITA', title: 'Sesi 3: Materi Engine, Oli/S.O.S & Website/LinkedIn', desc: 'Pelajari siklus 4-langkah, TBN, 7 aditif, 8 unsur S.O.S, Core Values, VisionLink, dan AMT.' },
+      { id: 'p5', time: '14:45 – 16:00 WITA', title: 'Sesi 4: Latihan Alat Kerja Simpel & Kuis 30 Soal', desc: 'Coba kalkulator KPI, cek rasio oli/solar, cek S.O.S, dan kerjakan kuis.' },
+      { id: 'p-free', time: '16:00 – 17:30 WITA', title: 'Waktu Bebas Pribadi (Dikosongkan)', desc: 'Slot waktu ini sengaja dikosongkan sepenuhnya untuk aktivitas pribadi Anda.', free: true },
+      { id: 'p6', time: '19:30 – 20:30 WITA', title: 'Review Ringan Bersama AI Mentor', desc: 'Tanyakan hal yang masih kurang jelas sebelum tidur.' }
+    ];
+
+    const siteSchedule = [
+      { id: 's1', time: '06:30 – 07:30 WITA', title: 'Toolbox Meeting K3 & Handover Shift Malam', desc: 'Ikuti pengarahan keselamatan kerja (K3/LOTO) dan terima laporan unit breakdown/PM shift malam.' },
+      { id: 's2', time: '07:30 – 09:00 WITA', title: 'Cek SMU VisionLink & Fault Code Unit', desc: 'Update SMU harian, pantau kode peringatan, dan pastikan data jam jalan unit akurat.' },
+      { id: 's3', time: '09:00 – 11:00 WITA', title: 'Jadwal PM, Backlog & Order Parts H-14', desc: 'Koordinasi jadwal PM, cek backlog (>30 hari), dan pastikan parts PM dipesan minimal H-14.' },
+      { id: 's4', time: '11:00 – 12:00 WITA', title: 'Cek Hasil Lab S.O.S & Filter Cutting / Magnet', desc: 'Tindak lanjuti temuan S.O.S (<24 jam) serta catatan pemeriksaan filter bekas & magnetic plug.' },
+      { id: 's5', time: '12:00 – 13:30 WITA', title: 'Istirahat Siang & Makan', desc: 'Waktu istirahat siang.' },
+      { id: 's6', time: '13:30 – 15:00 WITA', title: 'Koordinasi Workshop & Tim Operasi Tambang', desc: 'Pastikan kesiapan unit masuk bay PM dan koordinasi ketersediaan unit bersama tim tambang.' },
+      { id: 's7', time: '15:00 – 16:00 WITA', title: 'Rekap KPI Harian & Kirim Handover', desc: 'Hitung PA, MA, UA, MTTR, MTBS, cek klasifikasi downtime MARC/CVA, dan kirim laporan handover.' },
+      { id: 's-free', time: '16:00 – 17:30 WITA', title: 'Waktu Bebas Pribadi (Dikosongkan)', desc: 'Slot waktu pribadi di luar jam kerja administratif sore hari.', free: true }
+    ];
+
+    function renderSchedules() {
+      const pBox = document.getElementById('prep-schedule-list');
+      const sBox = document.getElementById('site-schedule-list');
+
+      const makeRow = (item) => {
+        if (item.free) {
+          return `
+            <div class="time-row free-row">
+              <div class="time-badge">${item.time}</div>
+              <div>
+                <strong style="font-size:0.93rem;">${item.title}</strong>
+                <p style="font-size:0.84rem; color:var(--ink-sub); margin-top:3px;">${item.desc}</p>
+              </div>
+            </div>
+          `;
+        }
+        const checked = state.doneSchedule.includes(item.id);
+        return `
+          <label class="check-row ${checked ? 'done' : ''}">
+            <input type="checkbox" ${checked ? 'checked' : ''} onchange="toggleScheduleItem('${item.id}')" />
+            <div style="flex:1;">
+              <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:4px;">
+                <span class="pill pill-dark">${item.time}</span>
+                <strong class="check-label" style="font-size:0.92rem;">${item.title}</strong>
+              </div>
+              <p style="font-size:0.84rem; color:var(--ink-sub);">${item.desc}</p>
+            </div>
+          </label>
+        `;
+      };
+
+      if (pBox) pBox.innerHTML = prepSchedule.map(makeRow).join('');
+      if (sBox) sBox.innerHTML = siteSchedule.map(makeRow).join('');
+
+      document.getElementById('prob-1').value = state.probNotes.m1 || '';
+      document.getElementById('prob-2').value = state.probNotes.m2 || '';
+      document.getElementById('prob-3').value = state.probNotes.m3 || '';
+    }
+
+    function toggleScheduleItem(id) {
+      const i = state.doneSchedule.indexOf(id);
+      if (i >= 0) state.doneSchedule.splice(i, 1);
+      else state.doneSchedule.push(id);
+      saveStorage();
+      renderSchedules();
+    }
+
+    function resetScheduleChecks() {
+      state.doneSchedule = [];
+      saveStorage();
+      renderSchedules();
+      notify('Centang jadwal harian direset.');
+    }
+
+    function saveProbNote(key, val) {
+      state.probNotes[key] = val;
+      saveStorage();
+      notify('Catatan probation tersimpan.');
+    }
+
+    /* ==========================================================================
+       5. 8 ELEMENTS, GLOSSARY (KAMUS ISTILAH WAJIB TAHU) & 15-QUESTION QUIZ
+       ========================================================================== */
+    const eightElements = [
+      {
+        id: 'el1', code: '01', title: 'Preventive Maintenance (PM) & Segitiga PM',
+        summary: 'Perawatan rutin berbasis SMU (10/Harian, 250, 500, 1000, 2000 jam) dengan 3 pilar: CAT Fluids, CAT Filters, dan CAT S.O.S.',
+        detail: 'Tujuan PM adalah menjaga kondisi unit tetap prima dan mencegah kerusakan dini. Sebagai analis, pastikan order suku cadang PM diajukan **H-14** sebelum SMU target tercapai.',
+        svg: `<svg width="330" height="150" viewBox="0 0 330 150" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="165,16 52,132 278,132" fill="#FEF9E6" stroke="#0F1115" stroke-width="2"/>
+          <circle cx="165" cy="16" r="12" fill="#F5C200" stroke="#0F1115" stroke-width="1.5"/>
+          <text x="165" y="20" text-anchor="middle" font-size="10" font-weight="800">1</text>
+          <text x="165" y="52" text-anchor="middle" font-size="11" font-weight="700">CAT FLUIDS</text>
+          <circle cx="52" cy="132" r="12" fill="#0F1115"/>
+          <text x="52" y="136" text-anchor="middle" font-size="10" font-weight="800" fill="#F5C200">2</text>
+          <text x="52" y="112" text-anchor="middle" font-size="11" font-weight="700">CAT FILTERS</text>
+          <circle cx="278" cy="132" r="12" fill="#0F1115"/>
+          <text x="278" y="136" text-anchor="middle" font-size="10" font-weight="800" fill="#F5C200">3</text>
+          <text x="278" y="112" text-anchor="middle" font-size="11" font-weight="700">CAT S.O.S</text>
+          <text x="165" y="98" text-anchor="middle" font-size="11" font-weight="800">SEGITIGA PM</text>
+        </svg>`
+      },
+      {
+        id: 'el2', code: '02', title: 'Contamination Control ("Silent Thief")',
+        summary: '80% masalah sistem hidrolik & bahan bakar dipicu partikel kontaminasi berukuran 10–30 mikron.',
+        detail: 'Mata manusia hanya melihat partikel **&ge;40 mikron** (rambut manusia ~80 mikron), sementara celah komponen hidrolik & injector hanya **10–30 mikron**. Gunakan *filter transfer cart*, tutup saluran terbuka (*cap & plug*), dan jaga kebersihan saat mengisi oli/solar.',
+        svg: `<svg width="370" height="114" viewBox="0 0 370 114" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="62" cy="48" r="26" fill="#0F1115"/>
+          <text x="62" y="52" text-anchor="middle" fill="#F5C200" font-size="11" font-weight="800">80 µm</text>
+          <text x="62" y="94" text-anchor="middle" font-size="10" font-weight="700">Rambut (~80 µm)</text>
+          <circle cx="185" cy="48" r="14" fill="#F5C200" stroke="#0F1115" stroke-width="1.5"/>
+          <text x="185" y="52" text-anchor="middle" fill="#0F1115" font-size="10" font-weight="800">40 µm</text>
+          <text x="185" y="94" text-anchor="middle" font-size="10" font-weight="700">Batas Mata Manusia</text>
+          <circle cx="308" cy="48" r="6" fill="#991B1B"/>
+          <text x="308" y="32" text-anchor="middle" fill="#991B1B" font-size="10" font-weight="800">10–30 µm</text>
+          <text x="308" y="94" text-anchor="middle" font-size="10" font-weight="700" fill="#991B1B">Perusak Sistem Hidrolik</text>
+        </svg>`
+      },
+      {
+        id: 'el3', code: '03', title: 'Scheduled Oil Sampling (S.O.S Lab Jakarta & Balikpapan)',
+        summary: 'Analisa laboratorium oli, coolant, dan solar untuk memantau keausan & kontaminasi tanpa membongkar unit.',
+        detail: 'Mengukur unsur logam & kontaminan (**Al, Cu, Cr, Si, Pb, Fe, Mg, Mo, Na**). Pada **Kurva Bath Tub**, **X3** adalah awal kenaikan keausan abnormal (tindakan korektif sebelum gagal parah di **X4**). Temuan kritis wajib ditindaklanjuti **&lt;24 jam**.',
+        svg: `<svg width="390" height="134" viewBox="0 0 390 134" xmlns="http://www.w3.org/2000/svg">
+          <line x1="28" y1="104" x2="365" y2="104" stroke="#0F1115" stroke-width="1.5"/>
+          <line x1="28" y1="18" x2="28" y2="104" stroke="#0F1115" stroke-width="1.5"/>
+          <path d="M 38 36 Q 78 84, 122 84 L 248 84 Q 292 80, 322 46 L 352 20" fill="none" stroke="#0F1115" stroke-width="2.5"/>
+          <circle cx="58" cy="58" r="4.5" fill="#F5C200" stroke="#0F1115" stroke-width="1.5"/>
+          <text x="58" y="120" text-anchor="middle" font-size="10" font-weight="700">X1: Break-in</text>
+          <circle cx="185" cy="84" r="4.5" fill="#065F46"/>
+          <text x="185" y="120" text-anchor="middle" font-size="10" font-weight="700">X2: Normal</text>
+          <circle cx="298" cy="68" r="5.5" fill="#F5C200" stroke="#0F1115" stroke-width="1.5"/>
+          <text x="288" y="120" text-anchor="middle" font-size="10" font-weight="800">X3: Waspada</text>
+          <circle cx="348" cy="24" r="5.5" fill="#991B1B"/>
+          <text x="352" y="120" text-anchor="middle" font-size="10" font-weight="800" fill="#991B1B">X4: Failure</text>
+        </svg>`
+      },
+      {
+        id: 'el4', code: '04', title: 'Condition Monitoring (CTS, GET, TA1/TA2, RDI, CHS)',
+        summary: 'Pemantauan kondisi unit melalui inspeksi dan pengukuran berkala.',
+        detail: 'Meliputi **CTS** (*Custom Track Service* — keausan undercarriage), **GET Inspection** (*Ground Engaging Tools* — kuku/cutting edge), **TA1** (inspeksi visual + S.O.S), **TA2** (pengujian performa & alat diagnostik), **RDI** (*Repair Data Input*), dan **CHS** (*Custom Hydraulic Service*).'
+      },
+      {
+        id: 'el5', code: '05', title: 'Training (Pengembangan SDM)',
+        summary: 'Pelatihan operator, mekanik, dan analis untuk mencegah kesalahan operasi maupun perawatan.',
+        detail: 'Operator yang terlatih menghindari *misoperation* (seperti *high idle* berlebih atau *lug engine*), sedangkan tim perawatan terus memperbarui kompetensi teknis.'
+      },
+      {
+        id: 'el6', code: '06', title: 'Scheduling (OMM, SOMA, MSR, MCS & AMT)',
+        summary: 'Penjadwalan terpadu agar PM, backlog, dan penggantian komponen selaras dengan rencana operasi.',
+        detail: 'Menggunakan acuan **OMM** (*Operation & Maintenance Manual*), **AMT** (*Asset Management Tool*), **SOMA / MSR / MCS** untuk mengatur jadwal perawatan secara terstruktur.'
+      },
+      {
+        id: 'el7', code: '07', title: 'Repair Management (Before vs After Failure)',
+        summary: 'Memperbaiki komponen sebelum rusak (*Before Failure*) jauh lebih hemat daripada menunggu rusak parah (*After Failure*).',
+        detail: 'Meliputi 3 langkah (*Repair Indicator &rarr; Diagnostic Inspection &rarr; Repair Option*), pembagian **Level I / II / III**, serta pilihan **CAT Reman (20%–80% harga baru)** atau **PEX**.'
+      },
+      {
+        id: 'el8', code: '08', title: 'Recording & Reporting (Lead & Lag Indicators)',
+        summary: 'Pencatatan data akurat dan pelaporan indikator utama perawatan.',
+        detail: 'Memantau **Lead Indicators** (kepatuhan PM, ketepatan sampling S.O.S, umur backlog) dan **Lag Indicators** (PA, MA, UA, MTTR, MTBS, serta biaya per jam).'
+      }
+    ];
+
+    const glossaryItems = [
+      { term: 'SMU (Service Meter Unit)', cat: 'Perawatan & KPI', def: 'Jam operasi unit yang tercatat pada hour meter sebagai dasar penjadwalan PM dan evaluasi performa.' },
+      { term: 'PM (Preventive Maintenance)', cat: 'Perawatan & KPI', def: 'Perawatan pencegahan berkala sesuai interval SMU (misalnya 250, 500, 1000, 2000 jam).' },
+      { term: 'Backlog', cat: 'Perawatan & KPI', def: 'Daftar temuan perawatan dari inspeksi/S.O.S yang dijadwalkan untuk dikerjakan; perlu dijaga agar tidak aging (>30 hari).' },
+      { term: 'PA (Physical Availability)', cat: 'Perawatan & KPI', def: 'Persentase kesiapan fisik unit: (Working + Standby) / (Working + Standby + Repair) × 100%.' },
+      { term: 'MA (Mechanical Availability)', cat: 'Perawatan & KPI', def: 'Persentase keandalan mekanis unit: Working / (Working + Repair) × 100%.' },
+      { term: 'UA (Use of Availability)', cat: 'Perawatan & KPI', def: 'Persentase pemakaian unit oleh operasi: Working / (Working + Standby) × 100%.' },
+      { term: 'MTTR & MTBS', cat: 'Perawatan & KPI', def: 'MTTR = rata-rata lama perbaikan (Repair / Jumlah Breakdown); MTBS = rata-rata jam kerja antar breakdown (Working / Jumlah Breakdown).' },
+      { term: 'MARC (Maintenance & Repair Contract)', cat: 'Kontrak & Sistem', def: 'Kontrak perawatan penuh oleh Trakindo dengan target availability dan pengelolaan biaya/perawatan armada.' },
+      { term: 'CVA (Customer Value Agreement)', cat: 'Kontrak & Sistem', def: 'Perjanjian dukungan suku cadang PM dan pemantauan kondisi alat bersama Trakindo.' },
+      { term: 'VisionLink & Product Link', cat: 'Kontrak & Sistem', def: 'Sistem telematika CAT untuk memantau SMU harian, lokasi, konsumsi solar, dan kode peringatan unit.' },
+      { term: 'AMT (Asset Management Tool)', cat: 'Kontrak & Sistem', def: 'Perangkat lunak analisis biaya siklus hidup alat, rencana perawatan, dan proyeksi penggantian komponen.' },
+      { term: 'SIS 2.0 & SIS2GO', cat: 'Kontrak & Sistem', def: 'Portal informasi servis resmi Caterpillar untuk mencari Part Number, manual OMM, dan panduan servis.' },
+      { term: 'PCR (Planned Component Replacement)', cat: 'Perawatan & KPI', def: 'Penggantian komponen utama secara terencana sebelum terjadi kerusakan fatal.' },
+      { term: 'PEX (Parts Exchange)', cat: 'Perawatan & KPI', def: 'Program tukar tambah komponen rekondisi siap pasang dari Trakindo untuk mempercepat waktu perbaikan.' },
+      { term: 'CAT Reman', cat: 'Perawatan & KPI', def: 'Komponen rekondisi standar pabrik Caterpillar (kisaran harga 20%–80% dari harga baru dengan tukar core).' },
+      { term: 'CTS & CHS', cat: 'Engine & Oli', def: 'CTS = Custom Track Service (pengukuran keausan undercarriage); CHS = Custom Hydraulic Service (pemeriksaan sistem hidrolik).' },
+      { term: 'TA1 & TA2', cat: 'Engine & Oli', def: 'TA1 = inspeksi visual keliling + S.O.S; TA2 = pengujian performa & diagnostik lebih mendalam.' },
+      { term: 'S.O.S (Scheduled Oil Sampling)', cat: 'Engine & Oli', def: 'Pengujian laboratorium rutin oli, coolant, dan bahan bakar untuk mendeteksi keausan & kontaminasi.' },
+      { term: 'TBN (Total Base Number)', cat: 'Engine & Oli', def: 'Ukuran cadangan basa pada oli mesin untuk menetralkan asam dari pembakaran bahan bakar.' },
+      { term: 'CAT DEO / TDTO / Hydo / FDAO', cat: 'Engine & Oli', def: 'DEO CI-4 = oli diesel (soot dispersancy); TDTO = transmisi/drive train; Hydo = hidrolik (1.300 ppm Zinc & water dispersion); FDAO = final drive.' },
+      { term: 'LOTO (Lockout / Tagout)', cat: 'Safety K3', def: 'Prosedur penguncian dan pemasangan label pada sumber energi/disconnect switch agar unit aman saat diperbaiki.' },
+      { term: 'JSA (Job Safety Analysis)', cat: 'Safety K3', def: 'Identifikasi bahaya dan langkah pengendalian risiko sebelum pekerjaan dimulai.' },
+      { term: "Downtime", cat: "Perawatan & KPI", def: "Waktu unit tidak bisa bekerja karena rusak atau sedang dirawat. Ibarat motor yang masuk bengkel: selama di bengkel, tidak bisa dipakai." },
+      { term: "Uptime", cat: "Perawatan & KPI", def: "Kebalikan downtime: waktu unit siap dan bisa dipakai bekerja." },
+      { term: "Breakdown", cat: "Perawatan & KPI", def: "Kerusakan mendadak yang membuat unit berhenti di luar rencana. Beda dengan PM yang sudah dijadwalkan." },
+      { term: "CM (Corrective Maintenance)", cat: "Perawatan & KPI", def: "Perbaikan setelah ada kerusakan atau temuan. Lawan dari PM yang mencegah sebelum rusak." },
+      { term: "PdM (Predictive Maintenance)", cat: "Perawatan & KPI", def: "Perawatan berdasarkan tanda-tanda sebelum rusak, misalnya hasil S.O.S atau getaran. Ibarat cek darah rutin untuk mendeteksi sakit lebih awal." },
+      { term: "Work Order (WO)", cat: "Perawatan & KPI", def: "Surat perintah kerja perbaikan atau PM, berisi unit, pekerjaan, dan parts. Ditutup (closing) setelah pekerjaan selesai." },
+      { term: "OMM (Operation & Maintenance Manual)", cat: "Perawatan & KPI", def: "Buku panduan operasi dan perawatan unit. Rujukan utama untuk interval PM, jenis oli, dan spesifikasi." },
+      { term: "Interval PM (250/500/1000 jam)", cat: "Perawatan & KPI", def: "Jarak jam operasi antar servis. Contoh: PM 250 jam artinya servis tiap 250 jam kerja, seperti servis motor tiap sekian kilometer." },
+      { term: "Lead Time", cat: "Alat & Parts", def: "Lama waktu sejak parts dipesan sampai tiba. Karena itu order parts dilakukan H-14 sebelum PM." },
+      { term: "PM Kit", cat: "Alat & Parts", def: "Paket parts untuk satu PM (filter, oli, seal). Disiapkan lengkap agar unit tidak menunggu parts." },
+      { term: "Part Number", cat: "Alat & Parts", def: "Nomor unik tiap suku cadang. Salah nomor berarti salah parts; selalu cek ke SIS atau katalog." },
+      { term: "Warehouse / Stok", cat: "Alat & Parts", def: "Gudang parts. Cek stok sebelum PM supaya tidak terlambat." },
+      { term: "Genuine Parts", cat: "Alat & Parts", def: "Suku cadang asli CAT. Kualitas dan ukuran sesuai standar pabrik." },
+      { term: "Filter", cat: "Engine & Oli", def: "Penyaring kotoran pada oli, solar, atau udara. Ibarat saringan kopi: kotoran tertahan, cairan bersih lewat." },
+      { term: "Contamination (Kontaminasi)", cat: "Engine & Oli", def: "Kotoran masuk ke sistem (debu, air, serpihan logam). Penyebab utama kerusakan hidrolik dan bahan bakar." },
+      { term: "Viscosity (Kekentalan Oli)", cat: "Engine & Oli", def: "Tingkat kekentalan oli. Terlalu encer tidak melindungi, terlalu kental sulit mengalir." },
+      { term: "Fe (Besi) & Cu (Tembaga)", cat: "Engine & Oli", def: "Unsur logam dalam hasil S.O.S. Kenaikan Fe menandakan keausan komponen besi (liner, ring), Cu menandakan keausan bushing atau cooler." },
+      { term: "Si (Silikon) & Na (Natrium)", cat: "Engine & Oli", def: "Si biasanya berasal dari debu (filter udara bocor); Na dari coolant yang bocor ke oli." },
+      { term: "Blow-by", cat: "Engine & Oli", def: "Gas pembakaran bocor lewat ring piston ke bak oli. Tanda ring atau liner aus." },
+      { term: "Overheating", cat: "Engine & Oli", def: "Mesin atau hidrolik terlalu panas. Cek coolant, radiator, kipas, dan level oli." },
+      { term: "Coolant", cat: "Engine & Oli", def: "Cairan pendingin mesin. Harus sesuai spesifikasi agar tidak karat atau mendidih." },
+      { term: "Water Separator", cat: "Engine & Oli", def: "Penyaring pemisah air dari solar. Dikuras berkala agar air tidak masuk injektor." },
+      { term: "Injektor", cat: "Engine & Oli", def: "Penyemprot solar ke ruang bakar. Sangat sensitif terhadap kotoran dan air." },
+      { term: "Hydraulic System", cat: "Hidrolik & Undercarriage", def: "Sistem yang menggerakkan boom, arm, bucket memakai oli bertekanan. Ibarat suntikan: dorong cairan, gerak tenaga." },
+      { term: "Pompa Hidrolik", cat: "Hidrolik & Undercarriage", def: "Jantung sistem hidrolik; mengalirkan oli bertekanan ke komponen." },
+      { term: "Relief Valve", cat: "Hidrolik & Undercarriage", def: "Katup pengaman yang membuka bila tekanan terlalu tinggi, supaya selang dan komponen tidak pecah." },
+      { term: "Internal Leak", cat: "Hidrolik & Undercarriage", def: "Kebocoran di dalam komponen (tidak menetes keluar). Gejalanya gerakan lemah dan oli cepat panas." },
+      { term: "Kavitasi", cat: "Hidrolik & Undercarriage", def: "Gelembung udara di oli hidrolik yang pecah dan merusak pompa. Gejalanya bunyi bising." },
+      { term: "Undercarriage", cat: "Hidrolik & Undercarriage", def: "Bagian kaki unit berantai: track, roller, idler, sprocket. Komponen termahal yang aus bertahap." },
+      { term: "Track Link, Bushing & Pin", cat: "Hidrolik & Undercarriage", def: "Rantai track tersusun dari link yang disambung pin dan bushing. Bushing aus membuat rantai memanjang." },
+      { term: "Sprocket, Idler & Roller", cat: "Hidrolik & Undercarriage", def: "Sprocket menggerakkan track, idler mengarahkan, roller menopang berat unit." },
+      { term: "GET (Ground Engaging Tools)", cat: "Hidrolik & Undercarriage", def: "Bagian yang menyentuh tanah: gigi bucket, cutting edge. Bersifat habis pakai dan diganti berkala." },
+      { term: "Track Tension", cat: "Hidrolik & Undercarriage", def: "Kekencangan rantai track. Terlalu kencang atau longgar sama-sama mempercepat aus." },
+      { term: "MTBF vs MTBS", cat: "Perawatan & KPI", def: "MTBF = rata-rata jam antar kerusakan; MTBS = rata-rata jam antar kejadian servis. Makin besar, makin andal." },
+      { term: "Service Leader & Supervisor", cat: "Kontrak & Sistem", def: "Pemimpin tim servis di lapangan; tempat melapor bila ada temuan atau hal tidak aman." },
+      { term: "Eskalasi", cat: "Kontrak & Sistem", def: "Melaporkan masalah ke atasan atau pihak lebih tinggi bila tidak bisa diselesaikan di level Anda atau sudah lewat batas waktu." },
+      { term: "Handover (Serah Terima Shift)", cat: "Kontrak & Sistem", def: "Catatan penyerahan kondisi unit dan pekerjaan dari satu shift ke shift berikutnya." },
+      { term: "APD (Alat Pelindung Diri)", cat: "Safety K3", def: "Helm, sepatu safety, kacamata, sarung tangan, rompi. Garis pertahanan terakhir, bukan pengganti prosedur aman." },
+      { term: "Hierarki Kontrol Bahaya", cat: "Safety K3", def: "Urutan cara mengurangi bahaya: eliminasi, substitusi, rekayasa, administratif, lalu APD." },
+      { term: "Tekanan Sisa", cat: "Safety K3", def: "Tekanan yang masih tertinggal di sistem walau mesin mati. Lepaskan dulu sebelum membuka selang." }
+    ];
+
+    const quizBank = [
+      { q: '1. Berapa persen kegagalan sistem hidrolik & bahan bakar dipicu kontaminasi partikel?', opts: ['35%', '50%', '80%', '95%'], ans: 2, exp: '80% kegagalan sistem hidrolik dan bahan bakar disebabkan kontaminasi.' },
+      { q: '2. Berapa ukuran partikel terkecil yang tampak mata manusia vs partikel perusak presisi (10–30 mikron)?', opts: ['Mata: 40 mikron | Perusak: 10–30 mikron', 'Mata: 10 mikron | Perusak: 80 mikron', 'Mata: 80 mikron | Perusak: 100 mikron', 'Mata: 5 mikron | Perusak: 50 mikron'], ans: 0, exp: 'Mata manusia melihat >=40 mikron (rambut ~80 mikron), sedangkan celah/partikel presisi 10–30 mikron.' },
+      { q: '3. Apa 3 komponen Segitiga Preventive Maintenance (PM)?', opts: ['CAT Fluids, CAT Filters, CAT S.O.S', 'CAT Engine, Transmission, Final Drive', 'CAT SIS, CAT ET, CAT Inspect', 'CAT Bucket, Blade, Ripper'], ans: 0, exp: 'Segitiga PM terdiri dari CAT Fluids, CAT Filters, dan CAT S.O.S.' },
+      { q: '4. Pada Kurva Bath Tub S.O.S, titik manakah awal kenaikan keausan abnormal sebelum kerusakan parah?', opts: ['Titik X1', 'Titik X2', 'Titik X3', 'Titik X4'], ans: 2, exp: 'Titik X3 menandakan awal kenaikan keausan abnormal sebelum ke X4.' },
+      { q: '5. Biaya overhaul Engine 3306 Before Failure vs After Failure pada modul APLTCL071 adalah:', opts: ['Rp 1.600/jam vs Rp 2.700/jam', 'Rp 667/jam vs Rp 1.590/jam', 'Rp 2.000/jam vs Rp 2.200/jam', 'Rp 500/jam vs Rp 1.200/jam'], ans: 0, exp: 'Before Failure Rp 1.600/jam vs After Failure Rp 2.700/jam.' },
+      { q: '6. Pada engine seri 3400, rasio penambahan oli (oil top-up) 1 liter per 200 liter solar berarti:', opts: ['Engine baru', 'Normal', 'Waspada / indikasi keausan ring piston, jadwalkan overhaul', 'Oli berlebih'], ans: 2, exp: '1L:400L = baru, 1L:300L = normal, 1L:200L = waspada keausan ring piston.' },
+      { q: '7. Kenaikan unsur Silicon (Si) pada hasil S.O.S umumnya menunjukkan:', opts: ['Masuknya debu/kotoran dari luar', 'Keausan gear final drive', 'Kelebihan kekentalan oli', 'Oli baru'], ans: 0, exp: 'Silicon (Si) tinggi menandakan masuknya debu/pasir dari luar.' },
+      { q: '8. Rumus Physical Availability (PA) yang benar adalah:', opts: ['W / (W + R) × 100%', '(W + S) / (W + S + R) × 100%', 'W / (W + S) × 100%', 'R / N'], ans: 1, exp: 'PA = (Working + Standby) / (Working + Standby + Repair) × 100%.' },
+      { q: '9. Cylinder block, crankshaft, dan cylinder head termasuk kategori perbaikan:', opts: ['Level I', 'Level II', 'Level III', 'Inspeksi harian'], ans: 2, exp: 'Komponen utama struktur/blok masuk Level III.' },
+      { q: '10. Kisaran harga CAT Reman dibanding komponen baru (dengan tukar core) adalah:', opts: ['5% – 10%', '20% – 80%', '95% – 100%', '120%'], ans: 1, exp: 'CAT Reman berkisar 20%–80% dari harga baru.' },
+      { q: '11. Software untuk analisis siklus hidup alat & perencanaan perawatan/PCR adalah:', opts: ['AMT (Asset Management Tool)', 'Paint', 'WordPad', 'Calculator'], ans: 0, exp: 'AMT (Asset Management Tool) digunakan untuk perencanaan & analisis umur/biaya alat.' },
+      { q: '12. Brand spirit dan komitmen layanan PT Trakindo Utama adalah:', opts: ['Advancing You Forward & Cepat dan Pasti', 'Always Stop Early', 'Only Parts No Service', 'Mining First'], ans: 0, exp: 'Advancing You Forward dan Cepat & Pasti.' },
+      { q: '13. Jika Working = 480 jam dan breakdown = 8 kali, maka MTBS adalah:', opts: ['60 Jam', '52 Jam', '65 Jam', '48 Jam'], ans: 0, exp: 'MTBS = 480 / 8 = 60 Jam.' },
+      { q: '14. Layanan pemantauan keausan komponen undercarriage (rantai, roller, idler) disebut:', opts: ['CTS (Custom Track Service)', 'CHS (Custom Hydraulic Service)', 'LOTO', 'JSA'], ans: 0, exp: 'CTS (Custom Track Service) memantau keausan undercarriage.' },
+      { q: '15. Mana yang termasuk 3 hal yang TIDAK bisa dideteksi oleh S.O.S?', opts: ['Kadar logam ppm', 'Patah kelelahan mendadak (fatigue) & serpihan >40 mikron', 'Kadar silika', 'Kadar tembaga'], ans: 1, exp: 'S.O.S tidak mendeteksi fatigue mendadak, partikel >40 mikron, maupun kekurangan oli.' },
+      { q: '16. Dalam hierarki kontrol bahaya, langkah yang PALING efektif adalah:', opts: ['APD', 'Eliminasi', 'Administratif', 'Rambu'], ans: 1, exp: 'Urutan: eliminasi, substitusi, rekayasa, administratif, APD.' },
+      { q: '17. Sebelum membuka selang hidrolik, yang wajib dilakukan adalah:', opts: ['Langsung dilepas', 'Turunkan implemen, matikan mesin, lepas tekanan sisa (LOTO)', 'Naikkan RPM', 'Tambah oli'], ans: 1, exp: 'Tekanan sisa dapat melukai; terapkan LOTO.' },
+      { q: '18. Gerakan hidrolik melambat dan oli panas biasanya mengindikasikan:', opts: ['Baterai lemah', 'Kebocoran internal/pompa aus atau cooler kotor', 'Ban kempis', 'Filter kabin kotor'], ans: 1, exp: 'Internal leak dan cooler tersumbat menimbulkan gejala tersebut.' },
+      { q: '19. Pada hidrolik, kecepatan gerak implemen terutama ditentukan oleh:', opts: ['Aliran (L/min)', 'Warna oli', 'Tekanan relief saja', 'Ukuran tangki'], ans: 0, exp: 'Aliran menentukan kecepatan, tekanan menentukan gaya.' },
+      { q: '20. Pemantauan keausan undercarriage dilakukan melalui:', opts: ['CHS', 'CTS', 'TA2', 'RDI'], ans: 1, exp: 'CTS = Custom Track Service.' },
+      { q: '21. Pemeriksaan hidrolik berkala pada layanan Trakindo disebut:', opts: ['CHS', 'CTS', 'GET', 'PEX'], ans: 0, exp: 'CHS = Custom Hydraulic Service.' },
+      { q: '22. Track terlalu kencang cenderung menyebabkan:', opts: ['Keausan bushing/sprocket lebih cepat', 'Umur komponen lebih panjang', 'Konsumsi solar turun drastis', 'Tidak berpengaruh'], ans: 0, exp: 'Tension berlebih mempercepat keausan undercarriage.' },
+      { q: '23. Rumus Physical Availability (PA) adalah:', opts: ['(Jam kalender − downtime) ÷ jam kalender', 'Jam operasi ÷ jam tersedia', 'Total perbaikan ÷ jumlah kejadian', 'Jam operasi ÷ jumlah kejadian'], ans: 0, exp: 'PA memakai jam kalender; rumus lain adalah UA, MTTR, MTBS.' },
+      { q: '24. MTTR adalah:', opts: ['Rata-rata waktu perbaikan per kejadian', 'Rata-rata jam antar kerusakan', 'Persentase pemakaian unit', 'Jumlah PM per bulan'], ans: 0, exp: 'MTTR = total waktu perbaikan ÷ jumlah kejadian.' },
+      { q: '25. MTBS dihitung dari:', opts: ['Jam operasi ÷ jumlah kejadian', 'Jam kalender ÷ 24', 'Downtime ÷ jam operasi', 'Jumlah unit ÷ jam'], ans: 0, exp: 'MTBS = jam operasi ÷ jumlah kejadian.' },
+      { q: '26. Prioritas backlog yang benar dari tertinggi adalah:', opts: ['Rutin, safety, unit down', 'Safety, unit down, berpotensi down, rutin', 'Unit down, rutin, safety', 'Semua sama'], ans: 1, exp: 'Safety selalu didahulukan, lalu unit down.' },
+      { q: '27. Air di bahan bakar paling berisiko merusak:', opts: ['Injektor', 'Ban', 'Kaca kabin', 'Lampu'], ans: 0, exp: 'Air dan kotoran merusak injektor; kuras water separator.' },
+      { q: '28. Backlog yang sudah lebih dari 30 hari sebaiknya:', opts: ['Dibiarkan', 'Dieskalasi', 'Dihapus', 'Dipindah ke bulan depan tanpa catatan'], ans: 1, exp: 'Backlog >30 hari perlu eskalasi.' },
+      { q: '29. Tujuan utama JSA adalah:', opts: ['Mengidentifikasi bahaya tiap langkah kerja dan menetapkan kontrolnya', 'Menghitung KPI', 'Memesan parts', 'Mengisi absensi'], ans: 0, exp: 'JSA: langkah, bahaya, kontrol, komunikasikan.' },
+      { q: '30. Kit PM (filter, oli) sebaiknya sudah siap di warehouse sebelum unit masuk bay, yaitu:', opts: ['H-14', 'H+14', 'Setelah unit masuk', 'Tidak perlu'], ans: 0, exp: 'Order parts dilakukan H-14 sebelum PM.' }
+    ];
+
+    function renderElements() {
+      const box = document.getElementById('elements-list');
+      if (!box) return;
+      box.innerHTML = eightElements.map((el, idx) => {
+        const done = state.doneElements.includes(el.id);
+        return `
+          <div class="acc-item ${idx === 0 ? 'open' : ''}" id="acc-${el.id}">
+            <button type="button" class="acc-trigger" onclick="toggleElementAcc('${el.id}')">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span class="pill ${done ? 'pill-ok' : 'pill-gold'}">${done ? '✓ Selesai' : 'Elemen ' + el.code}</span>
+                <strong style="font-size:0.95rem;">${el.title}</strong>
+              </div>
+              <span style="color:var(--ink-muted);">&#9662;</span>
+            </button>
+            <div class="acc-content">
+              <p style="color:var(--ink-main); font-weight:600; margin-bottom:6px;">${el.summary}</p>
+              <p>${el.detail.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>
+              ${el.svg ? `<div class="diagram-box">${el.svg}</div>` : ''}
+              <div style="margin-top:14px; display:flex; justify-content:flex-end;">
+                <button type="button" class="btn btn-sm ${done ? 'btn-outline' : 'btn-gold'}" onclick="toggleElementDone('${el.id}')">
+                  ${done ? '✓ Sudah Dikuasai' : 'Tandai Selesai'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleElementAcc(id) {
+      const el = document.getElementById('acc-' + id);
+      if (el) el.classList.toggle('open');
+    }
+
+    function toggleElementDone(id) {
+      const i = state.doneElements.indexOf(id);
+      if (i >= 0) state.doneElements.splice(i, 1);
+      else {
+        state.doneElements.push(id);
+        notify('Progres elemen tersimpan!');
+      }
+      saveStorage();
+      renderElements();
+    }
+
+    function markAllElementsDone() {
+      state.doneElements = eightElements.map((e) => e.id);
+      saveStorage();
+      renderElements();
+      notify('Semua 8 Elemen ditandai selesai!');
+    }
+
+    function renderDictionary() {
+      const q = (document.getElementById('dict-search')?.value || '').toLowerCase().trim();
+      const cat = document.getElementById('dict-cat')?.value || 'ALL';
+      const box = document.getElementById('dict-list');
+      if (!box) return;
+
+      const list = glossaryItems.filter((item) => {
+        const matchCat = cat === 'ALL' || item.cat === cat;
+        const matchQ = !q || item.term.toLowerCase().includes(q) || item.def.toLowerCase().includes(q);
+        return matchCat && matchQ;
+      });
+
+      box.innerHTML = list.map((item) => `
+        <div class="panel" style="margin-bottom:10px; padding:14px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:4px;">
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <strong style="font-size:0.93rem;">${escapeHtml(item.term)}</strong>
+              <span class="pill pill-gray">${escapeHtml(item.cat)}</span>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline" onclick="saveTermToPocket(${JSON.stringify(item.term)}, ${JSON.stringify(item.def)})">+ Buku Saku</button>
+          </div>
+          <p style="font-size:0.85rem; color:var(--ink-sub);">${escapeHtml(item.def)}</p>
+        </div>
+      `).join('') || '<p style="font-size:0.85rem; color:var(--ink-muted);">Istilah tidak ditemukan.</p>';
+    }
+
+    function saveTermToPocket(term, def) {
+      const date = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+      state.pocketNotes.unshift({ id: 'n-' + Date.now(), tag: term.toUpperCase(), date, text: def });
+      saveStorage();
+      renderPocketEntries();
+      notify(`"${term}" ditambahkan ke Buku Saku!`);
+    }
+
+    function renderQuiz() {
+      const box = document.getElementById('quiz-list');
+      if (!box) return;
+      box.innerHTML = quizBank.map((item, idx) => {
+        const picked = state.quizAnswers[idx];
+        return `
+          <div class="panel" style="margin-bottom:12px;">
+            <p style="font-weight:700; font-size:0.91rem; margin-bottom:10px;">${item.q}</p>
+            ${item.opts.map((opt, oIdx) => {
+              let extra = '';
+              if (state.quizChecked) {
+                if (oIdx === item.ans) extra = 'background:var(--ok-bg); border-color:var(--ok-line); font-weight:700;';
+                else if (picked === oIdx && oIdx !== item.ans) extra = 'background:var(--err-bg); border-color:var(--err-line);';
+              }
+              return `
+                <label class="check-row" style="${extra}">
+                  <input type="radio" name="q-${idx}" ${picked === oIdx ? 'checked' : ''} onchange="pickQuizAnswer(${idx}, ${oIdx})" />
+                  <span style="font-size:0.88rem;">${opt}</span>
+                </label>
+              `;
+            }).join('')}
+            ${state.quizChecked ? `
+              <div style="margin-top:8px; padding:10px 12px; background:var(--gold-soft); border-radius:8px; font-size:0.84rem;">
+                <strong>Pembahasan:</strong> ${item.exp}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+      if (state.quizChecked) showQuizResult();
+    }
+
+    function pickQuizAnswer(qIdx, oIdx) {
+      state.quizAnswers[qIdx] = oIdx;
+      saveStorage();
+    }
+
+    function submitQuizState() {
+      state.quizChecked = true;
+      saveStorage();
+      renderQuiz();
+      showQuizResult();
+      notify('Nilai kuis dihitung!');
+    }
+
+    function showQuizResult() {
+      let right = 0;
+      quizBank.forEach((q, i) => { if (state.quizAnswers[i] === q.ans) right++; });
+      const pct = Math.round((right / quizBank.length) * 100);
+      const el = document.getElementById('quiz-score-banner');
+      if (el) {
+        el.textContent = `Skor Anda: ${right}/${quizBank.length} (${pct}%) — ${pct >= 80 ? 'LULUS TARGET (≥80%)' : 'Coba ulangi materi & pembahasan'}`;
+        el.style.color = pct >= 80 ? 'var(--ok-ink)' : 'var(--err-ink)';
+      }
+    }
+
+    function resetQuizState() {
+      state.quizAnswers = {};
+      state.quizChecked = false;
+      const el = document.getElementById('quiz-score-banner');
+      if (el) el.textContent = '';
+      saveStorage();
+      renderQuiz();
+      notify('Kuis direset.');
+    }
+
+    /* ==========================================================================
+       6. SIMPLIFIED SITE TOOLS (KPI, DOWNTIME, PM, OIL RATIO, S.O.S, LOTO, BACKLOG, MSG)
+       ========================================================================== */
+    function setKPIPreset(mode) {
+      if (mode === 'normal') {
+        document.getElementById('in-w').value = 480;
+        document.getElementById('in-s').value = 140;
+        document.getElementById('in-r').value = 52;
+        document.getElementById('in-n').value = 8;
+      } else if (mode === 'repair') {
+        document.getElementById('in-w').value = 410;
+        document.getElementById('in-s').value = 110;
+        document.getElementById('in-r').value = 152;
+        document.getElementById('in-n').value = 14;
+      } else {
+        document.getElementById('in-w').value = 340;
+        document.getElementById('in-s').value = 260;
+        document.getElementById('in-r').value = 72;
+        document.getElementById('in-n').value = 9;
+      }
+      runKPITool();
+    }
+
+    function runKPITool() {
+      const w = Math.max(0, parseFloat(document.getElementById('in-w').value) || 0);
+      const s = Math.max(0, parseFloat(document.getElementById('in-s').value) || 0);
+      const r = Math.max(0, parseFloat(document.getElementById('in-r').value) || 0);
+      const n = Math.max(1, parseFloat(document.getElementById('in-n').value) || 1);
+
+      const tot = w + s + r;
+      const pa = tot > 0 ? ((w + s) / tot) * 100 : 0;
+      const ma = (w + r) > 0 ? (w / (w + r)) * 100 : 0;
+      const ua = (w + s) > 0 ? (w / (w + s)) * 100 : 0;
+      const mttr = r / n;
+      const mtbs = w / n;
+
+      document.getElementById('out-pa').textContent = pa.toFixed(2) + '%';
+      document.getElementById('out-ma').textContent = ma.toFixed(2) + '%';
+      document.getElementById('out-ua').textContent = ua.toFixed(2) + '%';
+      document.getElementById('out-mttr-mtbs').textContent = `${mttr.toFixed(1)}j / ${mtbs.toFixed(1)}j`;
+
+      const guide = document.getElementById('out-kpi-guide');
+      if (pa < 85 || ma < 85) {
+        guide.innerHTML = '<strong>Apa yang harus dilakukan:</strong> PA atau MA di bawah 85%. Cek penyebab breakdown berulang, percepat ketersediaan parts, dan evaluasi backlog/PM.';
+      } else if (ua < 70) {
+        guide.innerHTML = '<strong>Apa yang harus dilakukan:</strong> Kondisi mekanis unit cukup baik, tetapi jam standby tinggi (UA &lt;70%). Koordinasikan alokasi unit dengan pengawas operasi.';
+      } else {
+        guide.innerHTML = '<strong>Apa yang harus dilakukan:</strong> Performa PA &amp; MA terjaga baik. Pertahankan disiplin jadwal PM, order parts H-14, dan cegah backlog &gt;30 hari.';
+      }
+    }
+
+    function runDowntimeCheck() {
+      const k = document.getElementById('sel-dt-case')?.value || 'unplanned';
+      const box = document.getElementById('out-dt-box');
+      if (!box) return;
+
+      const map = {
+        unplanned: { badge: 'pill-err', label: 'Umumnya Downtime Dealer / Perawatan', note: 'Catat jam mulai–selesai breakdown dengan jelas, periksa apakah ada backlog tertunda, dan analisis penyebab agar tidak berulang.' },
+        parts: { badge: 'pill-err', label: 'Perlu Cek Klausul Parts / Kontrak', note: 'Pastikan status order parts di sistem tercatat rapi dan koordinasikan percepatan pengiriman bersama tim Parts/Logistik.' },
+        not_released: { badge: 'pill-info', label: 'Umumnya Downtime Customer / Operasi', note: 'Dokumentasikan waktu pemanggilan unit PM dan koordinasikan jadwal release unit bersama pengawas tambang agar tidak menumpuk.' },
+        misop: { badge: 'pill-info', label: 'Umumnya Downtime Customer / Operasi', note: 'Catat kronologi kejadian dan dukung pemeriksaan teknis agar penyebab kerusakan tercatat sesuai fakta lapangan.' }
+      };
+      const item = map[k];
+      box.innerHTML = `<span class="pill ${item.badge}" style="margin-bottom:6px;">${item.label}</span><p style="font-size:0.84rem; color:var(--ink-sub);">${item.note}</p>`;
+    }
+
+    function runPMTool() {
+      const smu = Math.max(0, parseFloat(document.getElementById('in-pm-smu').value) || 0);
+      const hpd = Math.max(1, parseFloat(document.getElementById('in-pm-hpd').value) || 18);
+      const nextSMU = (Math.floor(smu / 250) + 1) * 250;
+      const diffHrs = nextSMU - smu;
+      const daysLeft = diffHrs / hpd;
+
+      let pmName = 'PM 250 Jam';
+      if (nextSMU % 2000 === 0) pmName = 'PM 2000 Jam';
+      else if (nextSMU % 1000 === 0) pmName = 'PM 1000 Jam';
+      else if (nextSMU % 500 === 0) pmName = 'PM 500 Jam';
+
+      const urgent = daysLeft <= 14;
+      document.getElementById('out-pm-box').innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:8px;">
+          <span class="pill pill-dark">${pmName} di SMU ${nextSMU.toLocaleString('id-ID')}</span>
+          <span class="pill ${urgent ? 'pill-err' : 'pill-ok'}">${urgent ? 'Wajib Order Parts Sekarang (≤14 Hari)' : 'Masih Aman (>14 Hari)'}</span>
+        </div>
+        <p style="font-size:0.9rem; color:var(--ink-sub);">
+          Sisa <strong>${diffHrs} jam</strong> lagi (~<strong>${daysLeft.toFixed(1)} hari</strong> dengan pemakaian ${hpd} jam/hari).
+        </p>
+        <div class="action-guide">
+          <strong>Apa yang harus dilakukan:</strong> ${urgent ? 'Segera cek stok filter & oli di warehouse dan konfirmasikan jadwal masuk bay PM.' : 'Pantau SMU harian di VisionLink; siapkan rencana order parts menjelang H-14.'}
+        </div>
+      `;
+    }
+
+    function runOilRatioTool() {
+      const fuel = Math.max(1, parseFloat(document.getElementById('in-fuel-used').value) || 9000);
+      const oil = Math.max(0.1, parseFloat(document.getElementById('in-oil-added').value) || 45);
+      const cum = Math.max(0, parseFloat(document.getElementById('in-cum-fuel').value) || 720000);
+
+      const ratio = fuel / oil;
+      let statusPill = '<span class="pill pill-ok">Rasio Normal (~300–400 L Solar : 1 L Oli)</span>';
+      let advice = 'Konsumsi oli tergolong normal. Lanjutkan pemantauan rutin.';
+
+      if (ratio >= 380) {
+        statusPill = '<span class="pill pill-ok">Kondisi Prima (≥380 L Solar : 1 L Oli)</span>';
+        advice = 'Penyekatan ring piston/liner sangat baik.';
+      } else if (ratio <= 220) {
+        statusPill = '<span class="pill pill-err">Waspada Keausan Ring (≤220 L Solar : 1 L Oli)</span>';
+        advice = 'Konsumsi oli cukup boros! Cek kebocoran luar, turbocharger, dan jadwalkan pemeriksaan/overhaul terencana.';
+      }
+
+      document.getElementById('out-oil-box').innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+          ${statusPill}
+          <span class="pill pill-gray">Rasio: 1 L Oli : ${ratio.toFixed(0)} L Solar</span>
+          <span class="pill pill-dark">Fuel Burn Kumulatif: ${cum.toLocaleString('id-ID')} L</span>
+        </div>
+        <div class="action-guide"><strong>Apa yang harus dilakukan:</strong> ${advice}</div>
+      `;
+    }
+
+    function runSOSSimple() {
+      const sym = document.getElementById('sel-sos-symptom')?.value || 'si';
+      const box = document.getElementById('out-sos-simple');
+      if (!box) return;
+
+      const info = {
+        si: { b: 'pill-err', t: 'Cek Jalur Udara & Kebocoran Debu', d: 'Periksa clamp hose air cleaner, kondisi filter udara, dan breather. Ambil sampel ulang setelah perbaikan.' },
+        fe: { b: 'pill-err', t: 'Cek Keausan Komponen Besi', d: 'Periksa magnetic plug & potong filter bekas (oil filter cutting), lalu koordinasikan inspeksi lanjutan dengan mekanik/supervisor.' },
+        cu_pb: { b: 'pill-warn', t: 'Cek Bearing / Bushing / Thrust', d: 'Pantau tren kadar logam secara berurutan dan cek tekanan oli serta kondisi komponen berputar.' },
+        na: { b: 'pill-err', t: 'Waspada Kontaminasi Coolant / Air', d: 'Periksa level & kondisi coolant, tutup radiator, serta kemungkinan kebocoran internal/eksternal.' },
+        normal: { b: 'pill-ok', t: 'Kondisi Lab Normal', d: 'Tidak ada lonjakan unsur mencurigakan. Pertahankan jadwal pengambilan sampel S.O.S rutin.' }
+      };
+      const r = info[sym];
+      box.innerHTML = `<span class="pill ${r.b}" style="margin-bottom:6px;">${r.t}</span><p style="font-size:0.84rem; color:var(--ink-sub);">${r.d}</p>`;
+    }
+
+    const lotoChecklist = [
+      { id: 'l1', step: '1. APD & Izin', txt: 'Gunakan APD lengkap (helm, kacamata safety, sepatu safety, rompi) dan lapor pengawas.' },
+      { id: 'l2', step: '2. Parkir & Ganjal', txt: 'Parkir di area rata, turunkan attachment, aktifkan rem parkir, dan pasang wheel chock.' },
+      { id: 'l3', step: '3. Matikan & LOTO', txt: 'Matikan engine, putar disconnect switch ke OFF, lalu pasang gembok & tag LOTO pribadi.' },
+      { id: 'l4', step: '4. Buang Tekanan', txt: 'Pastikan tekanan sisa hidrolik/udara/panas sudah aman sebelum membuka komponen.' },
+      { id: 'l5', step: '5. Uji Tidak Nyala', txt: 'Pastikan tombol start tidak menggerakkan unit sebelum pekerjaan dimulai.' },
+      { id: 'l6', step: '6. JSA & Area Bersih', txt: 'JSA dipahami bersama dan area kerja bersih dari tumpahan oli/kotoran.' }
+    ];
+
+    function renderLotoList() {
+      const box = document.getElementById('loto-check-list');
+      if (!box) return;
+      box.innerHTML = lotoChecklist.map((item) => {
+        const done = state.doneLoto.includes(item.id);
+        return `
+          <label class="check-row ${done ? 'done' : ''}">
+            <input type="checkbox" ${done ? 'checked' : ''} onchange="toggleLotoItem('${item.id}')" />
+            <div>
+              <span class="pill pill-dark" style="margin-right:6px;">${item.step}</span>
+              <span class="check-label" style="font-size:0.87rem;">${item.txt}</span>
+            </div>
+          </label>
+        `;
+      }).join('');
+    }
+
+    function toggleLotoItem(id) {
+      const i = state.doneLoto.indexOf(id);
+      if (i >= 0) state.doneLoto.splice(i, 1);
+      else state.doneLoto.push(id);
+      saveStorage();
+      renderLotoList();
+    }
+
+    function resetLotoChecks() {
+      state.doneLoto = [];
+      saveStorage();
+      renderLotoList();
+      notify('Checklist LOTO direset.');
+    }
+
+    function renderBacklogList() {
+      const box = document.getElementById('backlog-list-box');
+      const badge = document.getElementById('bl-aging-badge');
+      const filter = document.getElementById('bl-filter')?.value || 'ALL';
+      if (!box) return;
+
+      const agingCount = state.backlogs.filter((b) => b.status !== 'Closed' && Number(b.age) > 30).length;
+      if (badge) {
+        badge.textContent = `Aging >30 Hari: ${agingCount}`;
+        badge.className = agingCount > 0 ? 'pill pill-err' : 'pill pill-ok';
+      }
+
+      const filtered = state.backlogs.filter((b) => filter === 'ALL' || b.status === filter);
+      if (filtered.length === 0) {
+        box.innerHTML = '<p style="font-size:0.85rem; color:var(--ink-muted);">Belum ada item backlog pada status ini.</p>';
+        return;
+      }
+
+      box.innerHTML = filtered.map((b) => {
+        const isOld = b.status !== 'Closed' && Number(b.age) > 30;
+        const pClass = b.prio.includes('P1') ? 'pill-err' : (b.prio.includes('P2') ? 'pill-warn' : 'pill-gray');
+        return `
+          <div class="panel" style="margin-bottom:10px; padding:14px 16px; ${isOld ? 'background:var(--err-bg); border-color:var(--err-line);' : ''}">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:6px;">
+              <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+                <span class="pill pill-dark">${escapeHtml(b.unit)}</span>
+                <span class="pill ${pClass}">${escapeHtml(b.prio)}</span>
+                <span class="pill ${isOld ? 'pill-err' : 'pill-info'}">${Number(b.age)} Hari ${isOld ? '(>30 HARI)' : ''}</span>
+              </div>
+              <div style="display:flex; gap:6px; align-items:center;">
+                <select class="sel" style="padding:4px 8px; min-height:34px; font-size:0.8rem;" onchange="updateBacklogStatus('${b.id}', this.value)">
+                  <option value="Open" ${b.status === 'Open' ? 'selected' : ''}>Open</option>
+                  <option value="Waiting Parts" ${b.status === 'Waiting Parts' ? 'selected' : ''}>Waiting Parts</option>
+                  <option value="Scheduled" ${b.status === 'Scheduled' ? 'selected' : ''}>Scheduled</option>
+                  <option value="Closed" ${b.status === 'Closed' ? 'selected' : ''}>Closed</option>
+                </select>
+                <button type="button" class="btn btn-sm btn-outline" style="padding:2px 9px; min-height:34px;" onclick="deleteBacklogRow('${b.id}')">&times;</button>
+              </div>
+            </div>
+            <p style="font-size:0.89rem; font-weight:600; color:var(--ink-main);">${escapeHtml(b.desc)}</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function addBacklogRow() {
+      const unit = (document.getElementById('bl-unit').value || '').trim().toUpperCase();
+      const desc = (document.getElementById('bl-desc').value || '').trim();
+      const prio = document.getElementById('bl-prio').value;
+      const age = Math.max(0, parseInt(document.getElementById('bl-age').value, 10) || 0);
+
+      if (!unit || !desc) {
+        notify('Isi Kode Unit dan Temuan Singkat terlebih dahulu.');
+        return;
+      }
+      state.backlogs.unshift({ id: 'b-' + Date.now(), unit, desc, prio, status: 'Open', age });
+      document.getElementById('bl-unit').value = '';
+      document.getElementById('bl-desc').value = '';
+      saveStorage();
+      renderBacklogList();
+      notify(`Backlog ${unit} ditambahkan.`);
+    }
+
+    function updateBacklogStatus(id, val) {
+      const row = state.backlogs.find((b) => b.id === id);
+      if (row) {
+        row.status = val;
+        saveStorage();
+        renderBacklogList();
+        notify(`Status ${row.unit} diubah ke ${val}.`);
+      }
+    }
+
+    function deleteBacklogRow(id) {
+      state.backlogs = state.backlogs.filter((b) => b.id !== id);
+      saveStorage();
+      renderBacklogList();
+      notify('Backlog dihapus.');
+    }
+
+    function buildQuickMessage() {
+      const type = document.getElementById('msg-type')?.value || 'handover';
+      const unit = document.getElementById('msg-unit').value;
+      const info = document.getElementById('msg-info').value;
+
+      const templates = {
+        handover:
+          `*HANDOVER SHIFT — SITE SATUI*\n` +
+          `Unit   : ${unit}\n` +
+          `Status : ${info}\n` +
+          `Analis : Iqsa Arada Wd`,
+        sos:
+          `*ESKALASI S.O.S KRITIS (<24 JAM) — SITE SATUI*\n` +
+          `Kepada : Service Supervisor & Tim Operasi\n` +
+          `Unit   : ${unit}\n` +
+          `Temuan : ${info}\n` +
+          `Mohon tindak lanjut inspeksi/resample sesuai prosedur.`,
+        pm:
+          `*PERMINTAAN MASUK BAY PM — SITE SATUI*\n` +
+          `Kepada : Tim Operasi / Dispatch\n` +
+          `Unit   : ${unit}\n` +
+          `Info   : ${info}\n` +
+          `Mohon unit diarahkan sesuai jadwal agar kesiapan armada terjaga.`,
+        parts:
+          `*FOLLOW-UP PARTS — SITE SATUI*\n` +
+          `Kepada : Tim Parts / Warehouse\n` +
+          `Unit   : ${unit}\n` +
+          `Detail : ${info}\n` +
+          `Mohon info ETA kedatangan suku cadang.`
+      };
+      document.getElementById('msg-result').value = templates[type] || templates.handover;
+    }
+
+    function copyQuickMessage() {
+      const ta = document.getElementById('msg-result');
+      ta.select();
+      ta.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+        notify('Pesan disalin ke clipboard!');
+      } catch (e) {
+        notify('Salin teks secara manual.');
+      }
+    }
+
+    /* ==========================================================================
+       7. RESPONSIVE AI MENTOR & POCKET NOTEBOOK
+       ========================================================================== */
+    function renderRichText(raw) {
+      return escapeHtml(raw)
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br/>');
+    }
+
+    function renderChatLog() {
+      const box = document.getElementById('chat-feed');
+      if (!box) return;
+      box.innerHTML = state.chatLog.map((m) => `
+        <div class="msg-bubble ${m.role}">
+          ${m.role === 'ai' ? renderRichText(m.text) : escapeHtml(m.text)}
+        </div>
+      `).join('');
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function clearChatLog() {
+      state.chatLog = [initialData.chatLog[0]];
+      saveStorage();
+      renderChatLog();
+      notify('Chat dibersihkan.');
+    }
+
+    function sendPresetQuestion(q) {
+      const inp = document.getElementById('chat-input');
+      if (inp) {
+        inp.value = q;
+        onChatSubmit(new Event('submit'));
+      }
+    }
+
+    function generateSmartAnswer(question) {
+      const q = question.toLowerCase().trim();
+      const nums = (question.match(/\d+(\.\d+)?/g) || []).map(Number);
+
+      // Check glossary match first if asking "apa itu / arti / singkatan"
+      if (q.includes('apa itu') || q.includes('arti') || q.includes('singkatan') || q.includes('maksud')) {
+        const found = glossaryItems.find((g) => q.includes(g.term.split(' ')[0].toLowerCase()) || g.term.toLowerCase().includes(q.replace(/apa itu|arti|singkatan|maksud|\?/g, '').trim()));
+        if (found) {
+          return `**${found.term}** (*${found.cat}*):\n${found.def}`;
+        }
+      }
+
+      if (q.includes('level i') || q.includes('level ii') || q.includes('reman') || q.includes('pex') || q.includes('fuel burn') || q.includes('oli')) {
+        return `**Ringkasan Repair Management, Reman/PEX & Fuel Burn (APLTCL071):**\n` +
+          `- **Level I:** Komponen ringan/aus rutin (piston ring, bearing, seal/gasket).\n` +
+          `- **Level II:** Perbaikan menengah/top-end (piston, liner, valve, camshaft, pompa/clutch).\n` +
+          `- **Level III:** Komponen struktur utama (block, crankshaft, cylinder head).\n` +
+          `- **Before vs After Failure:** Engine 3306 **Rp 1.600/jam** vs **Rp 2.700/jam**; Turbo 3516 **Rp 667/jam** vs **Rp 1.590/jam**.\n` +
+          `- **CAT Reman & PEX:** Reman 20%–80% harga baru dengan tukar *core*; PEX tukar tambah komponen siap pasang.\n` +
+          `- **Oli Seri 3400:** 1L:400L (baru), 1L:300L (normal), 1L:200L (waspada keausan ring piston).`;
+      }
+
+      if (q.includes('website') || q.includes('linkedin') || q.includes('trakindo') || q.includes('marc') || q.includes('cva') || q.includes('visionlink') || q.includes('amt')) {
+        return `**Referensi Website (trakindo.co.id) & LinkedIn PT Trakindo Utama:**\n` +
+          `- **Semangat & Komitmen:** *"Advancing You Forward"* & *"Cepat & Pasti"*, didukung **6 Core Values** (*Integrity, Continuous Development, Excellence, Proactive Accountability, Teamwork, Safety*).\n` +
+          `- **Sistem & Layanan:** **VisionLink/Product Link** (SMU & fault code), **CAT SIS 2.0** (part number & manual), **AMT** (analisis siklus hidup & biaya), serta kontrak **MARC & CVA**.\n` +
+          `- **Downtime MARC/CVA:** Pisahkan jam gangguan tanggung jawab dealer/perawatan dengan tanggung jawab customer/operasi (seperti unit belum dilepas PM atau kesalahan operasi).`;
+      }
+
+      if (q.includes('jadwal') || q.includes('09:00') || q.includes('16:00') || q.includes('satui') || q.includes('roster')) {
+        return `**Jadwal Harian Anda:**\n` +
+          `- **Persiapan (Mulai 09:00 WITA):** 09:00–10:30 materi APLTCL071, 10:30–11:30 catat istilah ke Buku Saku, 13:30–16:00 materi Engine/S.O.S/Trakindo & latihan, **16:00–17:30 WITA dikosongkan** untuk waktu pribadi.\n` +
+          `- **Site Satui (Roster 5 Kerja / 2 Libur):** 06:30 Toolbox K3 & handover, 07:30 SMU VisionLink, 09:00 PM/Backlog/Parts H-14, 11:00 S.O.S & filter/magnet, 13:30 koordinasi workshop/operasi, 15:00 rekap KPI & handover (16:00–17:30 kosong).`;
+      }
+
+      if (q.includes('sos') || q.includes('s.o.s') || q.includes('filter') || q.includes('magnet') || q.includes('tbn')) {
+        return `**S.O.S, Filter Cutting/Magnet & TBN:**\n` +
+          `- **3 Keterbatasan S.O.S:** Tidak mendeteksi *fatigue* mendadak, serpihan besar **&gt;40 mikron**, maupun kondisi **kekurangan oli**.\n` +
+          `- **Pemeriksaan Lapis Pertama:** Cek **magnetic plug** dan **potong filter bekas (oil filter cutting)** untuk melihat serpihan logam sejak dini.\n` +
+          `- **TBN:** Menunjukkan cadangan basa penetral asam pembakaran; **CAT DEO CI-4** memiliki *soot dispersancy*, **CAT Hydo** memiliki ~1.300 ppm Zinc & *water dispersion*.`;
+      }
+
+      if (q.includes('kpi') || q.includes('pa') || q.includes('ma') || q.includes('ua') || q.includes('mttr') || q.includes('mtbs')) {
+        let extra = '';
+        if (nums.length >= 3) {
+          const [w, s, r] = nums;
+          const pa = (((w + s) / (w + s + r)) * 100).toFixed(2);
+          const ma = ((w / (w + r)) * 100).toFixed(2);
+          const ua = ((w / (w + s)) * 100).toFixed(2);
+          extra = `\n\n**Hasil Hitung (W=${w}, S=${s}, R=${r}):**\n- **PA:** **${pa}%**\n- **MA:** **${ma}%**\n- **UA:** **${ua}%**`;
+        }
+        return `**Rumus KPI Utama:**\n- **PA:** (W + S) / (W + S + R) × 100%\n- **MA:** W / (W + R) × 100%\n- **UA:** W / (W + S) × 100%\n- **MTTR:** Repair / Jumlah Breakdown\n- **MTBS:** Working / Jumlah Breakdown` + extra;
+      }
+
+      if (q.includes('8 elemen') || q.includes('elemen') || q.includes('apltcl')) {
+        return `**8 Elemen Manajemen Perawatan (APLTCL071):**\n1. Preventive Maintenance (Segitiga PM: CAT Fluids, CAT Filters, CAT S.O.S)\n2. Contamination Control (10–30 mikron vs mata manusia ≥40 mikron)\n3. Scheduled Oil Sampling (Lab Jakarta & Balikpapan, Kurva Bath Tub X1–X4)\n4. Condition Monitoring (CTS, GET, TA1/TA2, RDI, CHS)\n5. Training\n6. Scheduling (OMM, AMT, SOMA/MSR/MCS)\n7. Repair Management (Before vs After Failure, Level I/II/III, Reman/PEX)\n8. Recording & Reporting (Lead & Lag Indicators).`;
+      }
+
+      return `Untuk pertanyaan **"${question}"**:\n` +
+        `Fokus utama di lapangan adalah **Repair Before Failure**, menjaga kebersihan & kontrol kontaminasi, memantau SMU/PM (order parts **H-14**), mencegah backlog melewati **30 hari**, dan memisahkan data **PA/MA/UA** secara akurat.\n\n` +
+        `Coba sebutkan istilah spesifik (seperti *MARC, CVA, TBN, PCR, PEX, CTS*) atau angka perhitungan agar saya jawab lebih spesifik.`;
+    }
+
+    async function onChatSubmit(e) {
+      e.preventDefault();
+      const inp = document.getElementById('chat-input');
+      const btn = document.getElementById('chat-send');
+      const text = (inp.value || '').trim();
+      if (!text) return;
+
+      state.chatLog.push({ role: 'user', text });
+      inp.value = '';
+      saveStorage();
+      renderChatLog();
+
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      const feed = document.getElementById('chat-feed');
+      const loader = document.createElement('div');
+      loader.className = 'msg-bubble ai';
+      loader.id = 'ai-loader';
+      loader.textContent = 'Menyiapkan jawaban...';
+      feed.appendChild(loader);
+      feed.scrollTop = feed.scrollHeight;
+
+      let answer = '';
+      try {
+        const apiKey = '';
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+        const sys = 'Anda adalah AI Mentor Equipment Management PT Trakindo Utama (Site Satui) untuk Iqsa Arada Wd. Jawab dengan bahasa Indonesia yang jelas, ringkas, dan akurat sesuai modul APLTCL071 (8 Elemen, Segitiga PM, Level I/II/III, CAT Reman/PEX, Fuel Burn & Oil Top-Up, Wet/Dry Liner, TBN, 7 aditif, DEO/TDTO/Hydo/FDAO, 8 unsur & 3 keterbatasan S.O.S) serta referensi trakindo.co.id & LinkedIn Trakindo.';
+
+        const payload = state.chatLog.slice(-6).map((m) => ({
+          role: m.role === 'user' ? 'user' : 'model',
+          parts: [{ text: m.text }]
+        }));
+
+        const ctrl = new AbortController();
+        const tid = setTimeout(() => ctrl.abort(), 7500);
+        const resp = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: ctrl.signal,
+          body: JSON.stringify({
+            contents: payload,
+            systemInstruction: { parts: [{ text: sys }] },
+            generationConfig: { temperature: 0.35, maxOutputTokens: 800 }
+          })
+        });
+        clearTimeout(tid);
+
+        if (resp.ok) {
+          const json = await resp.json();
+          const out = json?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (out && out.trim().length > 6) answer = out.trim();
+        }
+      } catch (err) {}
+
+      if (!answer) {
+        answer = generateSmartAnswer(text);
+      }
+
+      const lEl = document.getElementById('ai-loader');
+      if (lEl) lEl.remove();
+
+      state.chatLog.push({ role: 'ai', text: answer });
+      saveStorage();
+      renderChatLog();
+
+      btn.disabled = false;
+      btn.textContent = 'Kirim';
+    }
+
+    function renderPocketEntries() {
+      const box = document.getElementById('pocket-entries');
+      if (!box) return;
+      if (state.pocketNotes.length === 0) {
+        box.innerHTML = '<p style="font-size:0.85rem; color:var(--ink-muted);">Belum ada catatan di Buku Saku.</p>';
+        return;
+      }
+      box.innerHTML = state.pocketNotes.map((n) => `
+        <div class="panel" style="margin-bottom:10px; padding:14px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px;">
+            <span class="pill pill-gold">${escapeHtml(n.tag)}</span>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="font-size:0.75rem; color:var(--ink-muted);">${escapeHtml(n.date)}</span>
+              <button type="button" class="btn btn-sm btn-outline" style="padding:2px 9px; min-height:28px;" onclick="removePocketEntry('${n.id}')">Hapus</button>
+            </div>
+          </div>
+          <p style="font-size:0.89rem; color:var(--ink-main);">${escapeHtml(n.text)}</p>
+        </div>
+      `).join('');
+    }
+
+    function addPocketEntry() {
+      const termInp = document.getElementById('note-term');
+      const bodyInp = document.getElementById('note-body');
+      const text = (bodyInp.value || '').trim();
+      if (!text) {
+        notify('Isi catatan tidak boleh kosong.');
+        return;
+      }
+      const tag = (termInp.value || 'CATATAN').trim().toUpperCase();
+      const date = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+      state.pocketNotes.unshift({ id: 'n-' + Date.now(), tag, date, text });
+      termInp.value = '';
+      bodyInp.value = '';
+      saveStorage();
+      renderPocketEntries();
+      notify('Catatan disimpan ke Buku Saku!');
+    }
+
+    function removePocketEntry(id) {
+      state.pocketNotes = state.pocketNotes.filter((n) => n.id !== id);
+      saveStorage();
+      renderPocketEntries();
+      notify('Catatan dihapus.');
+    }
+
+    function downloadNotesTxt() {
+      const content = state.pocketNotes.map((n, i) => `${i + 1}. [${n.tag}] (${n.date})\n   ${n.text}`).join('\n\n');
+      const blob = new Blob([`BUKU SAKU TRAKINDO EM — IQSA ARADA WD\n========================================\n\n${content}`], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Buku-Saku-Trakindo-EM.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      notify('Buku Saku diunduh (.TXT)!');
+    }
+
+    /* ==========================================================================
+       8. READINESS METERS & INIT
+       ========================================================================== */
+    function refreshMeters() {
+      const elPct = Math.round((state.doneElements.length / 8) * 100);
+      document.getElementById('m-mod-pct').textContent = elPct + '%';
+      document.getElementById('m-mod-bar').style.width = elPct + '%';
+      document.getElementById('m-mod-sub').textContent = `${state.doneElements.length} dari 8 Elemen`;
+
+      const totalSched = prepSchedule.filter((x) => !x.free).length + siteSchedule.filter((x) => !x.free).length;
+      const scPct = Math.round((state.doneSchedule.length / totalSched) * 100);
+      document.getElementById('m-sched-pct').textContent = scPct + '%';
+      document.getElementById('m-sched-bar').style.width = scPct + '%';
+      document.getElementById('m-sched-sub').textContent = `${state.doneSchedule.length} dari ${totalSched} Sesi`;
+
+      const qEl = document.getElementById('m-quiz-val');
+      if (state.quizChecked) {
+        let ok = 0;
+        quizBank.forEach((q, i) => { if (state.quizAnswers[i] === q.ans) ok++; });
+        qEl.textContent = `${Math.round((ok / quizBank.length) * 100)}%`;
+      } else {
+        qEl.textContent = 'Belum Tes';
+      }
+
+      document.getElementById('m-note-val').textContent = `${state.pocketNotes.length} Catatan`;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setupPWA();
+      updateOnboardingBadge();
+      renderSchedules();
+      renderElements();
+      renderDictionary();
+      renderQuiz();
+      runKPITool();
+      runDowntimeCheck();
+      runPMTool();
+      runOilRatioTool();
+      runSOSSimple();
+      renderLotoList();
+      renderBacklogList();
+      buildQuickMessage();
+      renderChatLog();
+      renderPocketEntries();
+      refreshMeters();
+    });
+    // ===== Register Unit, Downtime, Export/Import, Service Worker =====
+    function renderUnits() {
+      state.units = state.units || []; state.downtime = state.downtime || [];
+      const al = [], rows = state.units.map((u, i) => {
+        const left = u.pm - u.smu, days = u.rate > 0 ? Math.ceil(left / u.rate) : null;
+        const dt = days === null ? '-' : new Date(Date.now() + days * 864e5).toLocaleDateString('id-ID');
+        if (left <= 0) al.push(`<div class="note err">⚠ ${escapeHtml(u.no)} sudah lewat SMU PM!</div>`);
+        else if (days !== null && days <= 14) al.push(`<div class="note warn">⏰ ${escapeHtml(u.no)}: PM ±${days} hari lagi — order parts (H-14) sekarang.</div>`);
+        return `<tr><td>${escapeHtml(u.no)}</td><td>${escapeHtml(u.model)}</td><td>${u.smu}</td><td>${u.pm}</td><td>${dt}</td><td><button onclick="delUnit(${i})">Hapus</button></td></tr>`;
+      }).join('');
+      document.getElementById('unit-list').innerHTML = state.units.length ? `<table><tr><th>Unit</th><th>Model</th><th>SMU</th><th>PM</th><th>Est. PM</th><th></th></tr>${rows}</table>` : '<em>Belum ada unit.</em>';
+      const box = document.getElementById('unit-alerts');
+      box.innerHTML = al.join('');
+      box.querySelectorAll('.note').forEach(n => n.style.cssText = 'padding:8px 10px;border-radius:10px;margin-bottom:6px;background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line)');
+      const d = state.downtime, tot = k => d.filter(x => x.by === k).reduce((a, x) => a + x.hrs, 0);
+      document.getElementById('dt-summary').innerHTML = d.length ? `Total: ${d.length} kejadian · Dealer ${tot('Dealer').toFixed(1)} jam · Customer ${tot('Customer').toFixed(1)} jam <button onclick="clearDowntime()">Reset</button>` : '';
+      if (typeof renderExtra === 'function' && $('dt-chart')) renderExtra();
+    }
+    function addUnit() {
+      const g = id => document.getElementById(id).value.trim();
+      if (!g('u-no')) return notify('Isi nomor unit');
+      state.units.push({ no: g('u-no'), model: g('u-model'), smu: +g('u-smu') || 0, rate: +g('u-rate') || 0, pm: +g('u-pm') || 0 });
+      saveStorage(); renderUnits();
+    }
+    function delUnit(i) { state.units.splice(i, 1); saveStorage(); renderUnits(); }
+    function addDowntime() {
+      const hrs = +document.getElementById('d-hrs').value;
+      if (!hrs) return notify('Isi jam downtime');
+      state.downtime.push({ no: document.getElementById('d-no').value, hrs, by: document.getElementById('d-by').value, note: document.getElementById('d-note').value, at: Date.now() });
+      saveStorage(); renderUnits();
+    }
+    function clearDowntime() { state.downtime = []; saveStorage(); renderUnits(); }
+    function exportData() {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' }));
+      a.download = 'trakindo-em-backup-' + new Date().toISOString().slice(0, 10) + '.json'; a.click();
+    }
+    function importData(inp) {
+      const f = inp.files[0]; if (!f) return;
+      const r = new FileReader();
+      r.onload = () => { try { Object.assign(state, JSON.parse(r.result)); saveStorage(); location.reload(); } catch (e) { notify('File tidak valid'); } };
+      r.readAsText(f);
+    }
+    window.addEventListener('DOMContentLoaded', renderUnits);
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+    // ===== Tambahan: search, flashcard, foto, S.O.S, grafik, laporan, tema =====
+    const $ = (id) => document.getElementById(id);
+    function globalSearch(q) {
+      q = q.trim().toLowerCase(); const out = $('g-res');
+      if (q.length < 3) { out.innerHTML = ''; return; }
+      const hits = [];
+      document.querySelectorAll('.sub-view li, .sub-view p').forEach((el) => {
+        if (hits.length < 12 && el.textContent.toLowerCase().includes(q)) hits.push(el);
+      });
+      glossaryItems.filter((g) => (g.term + g.def).toLowerCase().includes(q)).slice(0, 5).forEach((g) => hits.push({ textContent: g.term + ': ' + g.def }));
+      out.innerHTML = hits.length ? hits.map((h, i) => `<div style="padding:6px 8px;border-bottom:1px solid var(--line);font-size:.85rem;${h.closest ? 'cursor:pointer' : ''}" onclick="goHit(${i})">${escapeHtml(h.textContent.slice(0, 140))}…</div>`).join('') : '<em>Tidak ditemukan.</em>';
+      window._hits = hits;
+    }
+    function goHit(i) {
+      const el = window._hits[i]; if (!el.closest) return;
+      const sv = el.closest('.sub-view'), sec = el.closest('.page-view');
+      switchMainSec(sec.id);
+      const btn = [...sec.querySelectorAll('.sub-tab')].find((b) => (b.getAttribute('onclick') || '').includes("'" + sv.id + "'"));
+      if (btn) switchSubTab(btn, sv.id);
+      setTimeout(() => { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.style.background = 'var(--gold-soft)'; }, 150);
+    }
+    let fcI = 0, fcOpen = false;
+    function showFC() { const g = glossaryItems[fcI]; $('fc').innerHTML = fcOpen ? `<strong>${escapeHtml(g.term)}</strong><br>${escapeHtml(g.def)}` : `<strong>${escapeHtml(g.term)}</strong><br><small>(ketuk untuk lihat arti)</small>`; }
+    function flipFC() { fcOpen = !fcOpen; showFC(); }
+    function nextFC() { fcI = Math.floor(Math.random() * glossaryItems.length); fcOpen = false; showFC(); }
+    function addPhoto(inp) {
+      const f = inp.files[0]; if (!f) return;
+      const img = new Image(); img.onload = () => {
+        const sc = Math.min(1, 640 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+        c.width = img.width * sc; c.height = img.height * sc; c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        state.photos = state.photos || [];
+        state.photos.push({ d: c.toDataURL('image/jpeg', 0.6), n: $('ph-note').value, t: Date.now() });
+        saveStorage(); renderExtra(); inp.value = '';
+      }; img.src = URL.createObjectURL(f);
+    }
+    function delPhoto(i) { state.photos.splice(i, 1); saveStorage(); renderExtra(); }
+    function addSOS() {
+      state.sos = state.sos || [];
+      state.sos.push({ no: $('s-no').value, fe: +$('s-fe').value, cu: +$('s-cu').value, tbn: +$('s-tbn').value, t: Date.now() });
+      saveStorage(); renderExtra();
+    }
+    function renderExtra() {
+      state.photos = state.photos || []; state.sos = state.sos || []; state.downtime = state.downtime || [];
+      $('ph-list').innerHTML = state.photos.map((p, i) => `<div style="width:110px;font-size:.72rem"><img src="${p.d}" style="width:110px;border-radius:8px"><br>${escapeHtml(p.n || '')}<br><button onclick="delPhoto(${i})">Hapus</button></div>`).join('');
+      $('s-list').innerHTML = state.sos.slice(-6).reverse().map((r) => {
+        const prev = state.sos.filter((x) => x.no === r.no && x.t < r.t).pop();
+        const ar = prev ? (r.fe > prev.fe ? ' Fe ↑' : r.fe < prev.fe ? ' Fe ↓' : ' Fe =') : '';
+        return `<div>${new Date(r.t).toLocaleDateString('id-ID')} · ${escapeHtml(r.no)} · Fe ${r.fe} · Cu ${r.cu} · TBN ${r.tbn}${ar}</div>`;
+      }).join('');
+      const by = {}; state.downtime.forEach((d) => { const k = d.no || '-'; by[k] = by[k] || { D: 0, C: 0 }; by[k][d.by === 'Dealer' ? 'D' : 'C'] += d.hrs; });
+      const ks = Object.keys(by), mx = Math.max(1, ...ks.map((k) => by[k].D + by[k].C));
+      $('dt-chart').innerHTML = ks.length ? ks.map((k) => `<div style="font-size:.8rem;margin:4px 0">${escapeHtml(k)} (${(by[k].D + by[k].C).toFixed(1)} j)<div style="display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--bg-subtle)"><div style="width:${by[k].D / mx * 100}%;background:#F5C200"></div><div style="width:${by[k].C / mx * 100}%;background:#6B7280"></div></div></div>`).join('') + '<small>Kuning = Dealer · Abu = Customer</small>' : '<em>Belum ada data downtime.</em>';
+    }
+    function shareReport() {
+      const d = state.downtime, t = (k) => d.filter((x) => x.by === k).reduce((a, x) => a + x.hrs, 0).toFixed(1);
+      const txt = `Ringkasan EM Site Satui — ${new Date().toLocaleDateString('id-ID')}\nUnit terdaftar: ${state.units.length}\nDowntime: Dealer ${t('Dealer')} jam, Customer ${t('Customer')} jam\n` + state.units.map((u) => `- ${u.no}: SMU ${u.smu}, PM ${u.pm}`).join('\n');
+      if (navigator.share) navigator.share({ text: txt }).catch(() => {}); else { navigator.clipboard.writeText(txt); notify('Ringkasan disalin'); }
+    }
+    function askNotif() {
+      if (!('Notification' in window)) return notify('Browser tidak mendukung notifikasi');
+      Notification.requestPermission().then((p) => { if (p === 'granted') notify('Notifikasi aktif (muncul saat aplikasi dibuka)'); });
+    }
+    function toggleDark() { const on = document.documentElement.classList.toggle('dark'); localStorage.setItem('tk_dark', on ? '1' : ''); }
+    function bigFont() { const b = localStorage.getItem('tk_big') ? '' : '1'; localStorage.setItem('tk_big', b); document.documentElement.style.fontSize = b ? '19px' : '16px'; }
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('tk_dark')) document.documentElement.classList.add('dark');
+      if (localStorage.getItem('tk_big')) document.documentElement.style.fontSize = '19px';
+      nextFC(); renderExtra();
+      
+      if ('Notification' in window && Notification.permission === 'granted') {
+        const n = document.querySelectorAll('#unit-alerts .note').length;
+        if (n) new Notification('Trakindo EM', { body: n + ' unit perlu perhatian PM' });
+      }
+    });
+    // ===== Tahap 3: unit link, laporan, PIN, backup, IndexedDB foto, kuis ulang =====
+    function fillUnitLists() {
+      const u = state.units || [];
+      $('unit-dl').innerHTML = u.map((x) => `<option value="${escapeHtml(x.no)}">`).join('');
+      $('pm-pick').innerHTML = '<option value="">Pilih unit...</option>' + u.map((x, i) => `<option value="${i}">${escapeHtml(x.no)} (${x.smu} jam)</option>`).join('');
+    }
+    function pickUnitPM(i) {
+      const u = (state.units || [])[i]; if (!u) return;
+      $('in-pm-smu').value = u.smu; if (u.rate) $('in-pm-hpd').value = u.rate; runPMTool();
+    }
+    function buildReport(kind) {
+      const d = state.downtime || [], now = Date.now(), span = kind === 'harian' ? 864e5 : 7 * 864e5;
+      const r = d.filter((x) => now - x.at <= span), t = (k) => r.filter((x) => x.by === k).reduce((a, x) => a + x.hrs, 0).toFixed(1);
+      const pm = (state.units || []).map((u) => ({ u, days: u.rate > 0 ? Math.ceil((u.pm - u.smu) / u.rate) : null })).filter((x) => x.days !== null && x.days <= 14);
+      const bl = (state.backlogs || []).filter((b) => b && b.status !== 'Closed').length;
+      $('rep-out').value = `*Laporan ${kind === 'harian' ? 'Harian' : 'Mingguan'} EM Site Satui*\n${new Date().toLocaleDateString('id-ID')}\n\n*Downtime* (${r.length} kejadian)\n- Dealer: ${t('Dealer')} jam\n- Customer: ${t('Customer')} jam\n${r.map((x) => `  • ${x.no || '-'}: ${x.hrs} jam (${x.by}) ${x.note || ''}`).join('\n')}\n\n*PM dalam 14 hari*\n${pm.length ? pm.map((x) => `- ${x.u.no}: ±${x.days} hari (SMU PM ${x.u.pm})`).join('\n') : '- Tidak ada'}\n\n*Backlog terbuka:* ${bl}\n\nTerima kasih.`;
+    }
+    function copyRep() {
+      const t = $('rep-out').value; if (!t) return notify('Buat laporan dulu');
+      if (navigator.share) navigator.share({ text: t }).catch(() => {}); else { navigator.clipboard.writeText(t); notify('Laporan disalin'); }
+    }
+    async function sha(t) { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('tk' + t)); return [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, '0')).join(''); }
+    async function setPin(del) {
+      if (del) { localStorage.removeItem('tk_pin'); return notify('PIN dihapus'); }
+      const p = $('pin-in').value; if (!/^\d{4,6}$/.test(p)) return notify('PIN harus 4-6 angka');
+      localStorage.setItem('tk_pin', await sha(p)); $('pin-in').value = ''; notify('PIN tersimpan. Berlaku saat aplikasi dibuka berikutnya.');
+    }
+    async function tryPin() {
+      if (await sha($('pin-try').value) === localStorage.getItem('tk_pin')) $('pin-lock').style.display = 'none'; else $('pin-err').textContent = 'PIN salah';
+    }
+    if (localStorage.getItem('tk_pin')) window.addEventListener('DOMContentLoaded', () => { $('pin-lock').style.display = 'flex'; });
+    // Foto ke IndexedDB
+    const idb = () => new Promise((ok, no) => { const r = indexedDB.open('tk_photos', 1); r.onupgradeneeded = () => r.result.createObjectStore('p', { keyPath: 't' }); r.onsuccess = () => ok(r.result); r.onerror = no; });
+    async function idbAll() { try { const db = await idb(); return await new Promise((ok) => { const q = db.transaction('p').objectStore('p').getAll(); q.onsuccess = () => ok(q.result); q.onerror = () => ok([]); }); } catch (e) { return []; } }
+    async function idbPut(o) { const db = await idb(); db.transaction('p', 'readwrite').objectStore('p').put(o); }
+    async function idbDel(t) { const db = await idb(); db.transaction('p', 'readwrite').objectStore('p').delete(t); }
+    addPhoto = function (inp) {
+      const f = inp.files[0]; if (!f) return;
+      const img = new Image(); img.onload = async () => {
+        const sc = Math.min(1, 1024 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+        c.width = img.width * sc; c.height = img.height * sc; c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        await idbPut({ d: c.toDataURL('image/jpeg', 0.7), n: $('ph-note').value, t: Date.now() }); inp.value = ''; renderExtra();
+      }; img.src = URL.createObjectURL(f);
+    };
+    delPhoto = async function (t) { await idbDel(t); renderExtra(); };
+    const _re = renderExtra;
+    renderExtra = async function () {
+      _re(); fillUnitLists();
+      const ph = await idbAll();
+      $('ph-list').innerHTML = ph.map((p) => `<div style="width:110px;font-size:.72rem"><img src="${p.d}" style="width:110px;border-radius:8px"><br>${escapeHtml(p.n || '')}<br><button onclick="delPhoto(${p.t})">Hapus</button></div>`).join('');
+      const last = +localStorage.getItem('tk_bk') || 0, days = Math.floor((Date.now() - last) / 864e5);
+      $('bk-note').innerHTML = last && days < 7 ? `Backup terakhir ${days} hari lalu.` : '<strong>⚠ Sudah lebih dari 7 hari belum backup. Tekan Export JSON di kartu Register Unit.</strong>';
+    };
+    const _ex = exportData; exportData = function () { localStorage.setItem('tk_bk', Date.now()); _ex(); renderExtra(); };
+    // Kuis: ulang soal salah
+    function retryWrong() {
+      const keep = {}; quizBank.forEach((q, i) => { if (state.quizAnswers[i] === q.ans) keep[i] = state.quizAnswers[i]; });
+      state.quizAnswers = keep; state.quizChecked = false; saveStorage(); renderQuiz();
+      const el = $('quiz-score-banner'); if (el) el.textContent = 'Jawab ulang soal yang salah/kosong, lalu periksa lagi.';
+    }
+    // ===== PASANG KE LAYAR UTAMA (baru) =====
+    function instEnv() {
+      const ua = navigator.userAgent, lo = location.protocol;
+      return {
+        standalone: matchMedia('(display-mode: standalone)').matches || navigator.standalone === true,
+        web: lo === 'http:' || lo === 'https:',
+        secure: window.isSecureContext,
+        ios: /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1),
+        inapp: /FBAN|FBAV|Instagram|Line\/|WhatsApp|Telegram|MicroMessenger|TikTok|; wv\)/i.test(ua),
+        safari: /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua)
+      };
+    }
+    let deferredInstall = null;
+    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredInstall = e; if ($('install-modal').classList.contains('open')) renderInstall(); });
+    window.addEventListener('appinstalled', () => { deferredInstall = null; renderInstall(); notify('Aplikasi terpasang di layar utama'); });
+    function renderInstall() {
+      const e = instEnv(), b = $('inst-body'), url = location.href.split('#')[0];
+      const box = (c, t) => `<div style="padding:10px 12px;border-radius:10px;margin-bottom:10px;background:var(--${c}-bg);color:var(--${c}-ink);border:1px solid var(--${c}-line)">${t}</div>`;
+      let h = '';
+      if (e.standalone) h = box('ok', '✅ Aplikasi sudah berjalan dari layar utama. Tidak perlu dipasang lagi.');
+      else if (!e.web || !e.secure) h = box('err', '⚠ Halaman ini dibuka dari file/penyimpanan HP, jadi <strong>tidak bisa dipasang</strong>. Upload folder aplikasi ke hosting HTTPS gratis (misalnya Netlify Drop atau GitHub Pages), lalu buka <strong>link-nya</strong> di Chrome (Android) atau Safari (iPhone).');
+      else if (e.inapp) h = box('warn', '⚠ Kamu membuka lewat browser di dalam aplikasi (WhatsApp/Instagram/dll) yang tidak mendukung pemasangan. Salin link, lalu tempel di <strong>Chrome</strong> atau <strong>Safari</strong>.') + `<button class="btn btn-dark" style="width:100%" onclick="navigator.clipboard.writeText('${url}').then(()=>notify('Link disalin'))">Salin Link</button>`;
+      else if (e.ios) {
+        h = (e.safari ? '' : box('warn', 'Di iPhone, pemasangan paling andal lewat <strong>Safari</strong>. Buka link ini di Safari dulu.')) +
+          '<ol style="padding-left:20px;margin:0"><li>Ketuk tombol <strong>Bagikan</strong> (kotak dengan panah ke atas) di bagian bawah/atas Safari.</li><li>Gulir lalu pilih <strong>Tambah ke Layar Utama</strong> (Add to Home Screen).</li><li>Ketuk <strong>Tambah</strong>. Ikon muncul di layar utama.</li></ol>';
+      } else if (deferredInstall) h = box('ok', 'Siap dipasang.') + '<button class="btn btn-dark" style="width:100%" onclick="doInstall()">Pasang ke Layar Utama</button>';
+      else h = box('info', 'Tombol pasang otomatis belum tersedia. Pasang manual lewat menu browser:') + '<ol style="padding-left:20px;margin:0"><li>Buka halaman ini di <strong>Chrome</strong>.</li><li>Ketuk menu titik tiga <strong>⋮</strong> di kanan atas.</li><li>Pilih <strong>Instal aplikasi</strong> atau <strong>Tambahkan ke layar utama</strong>.</li></ol><p style="margin-top:8px;color:var(--ink-muted);font-size:.82rem">Jika pilihan itu tidak ada, muat ulang halaman sekali (agar file offline ter-cache) lalu cek menu lagi.</p>';
+      b.innerHTML = h;
+    }
+    async function doInstall() {
+      if (!deferredInstall) return renderInstall();
+      deferredInstall.prompt();
+      const r = await deferredInstall.userChoice; deferredInstall = null;
+      notify(r.outcome === 'accepted' ? 'Memasang...' : 'Pemasangan dibatalkan'); renderInstall();
+    }
+    function openInstallModal() { renderInstall(); $('install-modal').classList.add('open'); }
+    function closeInstallModal() { $('install-modal').classList.remove('open'); }
+  </script>
+</body>
+</html>
